@@ -202,3 +202,22 @@ ul.experience-item-details li {
     font-size: 0.9rem;
     font-family: 'WorkSans', sans-serif;
 }
+
+.project-title {
+    font-weight: bold;
+        margin-bottom: 0.6rem;
+        color: var(--semi-black);
+        font-family: 'WorkSans', sans-serif;
+}
+
+ul.project-item-details li::marker {
+    content: ">";
+    font-family: 'WorkSans';
+}
+
+a.url-in-text {
+    
+    color: var(--semi-black);
+    font-size: 0.9rem;
+    font-family: 'WorkSans', sans-serif;
+}
