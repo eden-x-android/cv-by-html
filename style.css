@@ -86,9 +86,9 @@ body {
 
 h1 {
     font-family: 'BergenText', sans-serif;
-    font-size: 3rem;
+    font-size: 3.2rem;
     color: var(--blue);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
 }
 
 .personal-infor {
