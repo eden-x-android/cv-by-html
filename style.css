@@ -56,6 +56,7 @@ config margin for top and bottom page in print mode
     --gray: #7B7B7B;
     --light-black: #484848;
     --white: #ffffff;
+    --semi-black-50: #363636;
 }
 
 * {
@@ -142,11 +143,11 @@ a.contact-info-item {
 }
 
 .left {
-    flex: 0 0 65%;
+    flex: 30%;
 }
 
 .right {
-    flex: 0 0 30%;
+    flex: 65%;
 }
 
 .experience-header,
@@ -225,4 +226,35 @@ a.url-in-text {
     color: var(--semi-black);
     font-size: 0.9rem;
     font-family: 'WorkSans', sans-serif;
+}
+
+.skill-section {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.skill-item-container {
+    margin-right: 0.8rem;
+    margin-bottom: 0.7rem;
+}
+
+.skill-item {
+    border-radius: 4px;
+    border-style: dashed;
+    border-color: var(--semi-black-50);
+    border-width: 1px;
+    text-align: center;
+    color: var(--semi-black);
+    align-items: center;
+    padding: 0.2rem 0.3rem;
+    font-family: 'WorkSans', monospace;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin: auto;
+}
+
+.skill-item img {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-right: 0.2rem;
 }
