@@ -57,6 +57,7 @@ config margin for top and bottom page in print mode
     --light-black: #484848;
     --white: #ffffff;
     --semi-black-50: #363636;
+    --line-height: 1.35;
 }
 
 * {
@@ -89,7 +90,7 @@ h1 {
     font-family: 'BergenText', sans-serif;
     font-size: 3.2rem;
     color: var(--blue);
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.5rem;
 }
 
 .personal-infor {
@@ -99,16 +100,17 @@ h1 {
 
 .job-title {
     color: var(--semi-black);
-    font-family: 'AndaleMono', monospace;
+    font-family: 'WorkSans', monospace;
     font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1.4rem;
+    font-size: 1.1rem;
 }
 
 .contact-info {
     display: flex;
     flex-wrap: wrap;
-    font-family: 'AndaleMono', monospace;
+    font-family: 'WorkSans', monospace;
     font-weight: 400;
     font-size: 0.9rem;
 }
@@ -126,7 +128,7 @@ a.contact-info-item {
 .contact-info-item img {
     width: 1.1rem;
     height: 1.1rem;
-    margin-right: 0.4rem;
+    margin-right: 0.5rem;
 }
 
 .detail-infor {
@@ -136,10 +138,12 @@ a.contact-info-item {
 }
 
 .date {
-    font-family: 'AndaleMono', monospace;
+    font-family: 'WorkSans', monospace;
     font-size: 0.9rem;
     margin-bottom: 0.6rem;
     color: var(--semi-black);
+    opacity: 0.5;
+    font-weight: 500;
 }
 
 .left {
@@ -156,7 +160,7 @@ a.contact-info-item {
     color: var(--blue);
     margin-bottom: 1.1rem;
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: 700;
     font-family: 'BergenText', sans-serif;
 }
 
@@ -193,10 +197,11 @@ ul.experience-item-details li {
     padding-left: 0.5rem;
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
+    line-height: var(--line-height);
 }
 
 .additional-section {
-    margin-bottom: 2rem;
+    margin-bottom: 1.2rem;
 }
 
 .additional-item {
@@ -207,6 +212,7 @@ ul.experience-item-details li {
 .additional-detail {
     font-size: 0.9rem;
     font-family: 'WorkSans', sans-serif;
+    line-height: var(--line-height);
 }
 
 .project-title {
@@ -231,6 +237,7 @@ a.url-in-text {
 .skill-section {
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 1.1rem;
 }
 
 .skill-item-container {
