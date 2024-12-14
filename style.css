@@ -12,7 +12,7 @@ config margin for top and bottom page in print mode
 }
 
 @media print {
-    .break_page {
+    .page-break {
         page-break-after: always;
     }
 }
@@ -56,6 +56,8 @@ config margin for top and bottom page in print mode
     --gray: #7B7B7B;
     --light-black: #484848;
     --white: #ffffff;
+    --semi-black-50: #363636;
+    --line-height: 1.35;
 }
 
 * {
@@ -66,7 +68,7 @@ config margin for top and bottom page in print mode
 }
 
 html {
-    font-size: 14px;
+    font-size: 16px;
 }
 
 body {
@@ -74,6 +76,8 @@ body {
     line-height: 1.2;
     color: var(--light-black);
     background-color: var(--semi-black);
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
 }
 
 .container {
@@ -84,9 +88,9 @@ body {
 
 h1 {
     font-family: 'BergenText', sans-serif;
-    font-size: 3rem;
+    font-size: 3.2rem;
     color: var(--blue);
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .personal-infor {
@@ -96,14 +100,22 @@ h1 {
 
 .job-title {
     color: var(--semi-black);
-    font-family: 'AndaleMono', monospace;
-    font-weight: 700;
-    margin-bottom: 0.8rem;
+    font-family: 'WorkSans', monospace;
+    font-size: 1rem;
+    font-weight: 600;
+    font-size: 1.1rem;
 }
 
 .contact-info {
     display: flex;
-    font-family: 'AndaleMono', monospace;
+    flex-wrap: wrap;
+    font-family: 'WorkSans', monospace;
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+
+.contact-info-vertical-align {
+    font-family: 'WorkSans', monospace;
     font-weight: 400;
     font-size: 0.9rem;
 }
@@ -111,37 +123,56 @@ h1 {
 a.contact-info-item {
     display: flex;
     align-items: center;
-    margin-right: 1.6rem;
+    margin-right: 1.8rem;
+    margin-bottom: 0.6rem;
+    text-decoration: none;
+    color: var(--semi-black);
+    align-items: center;
+}
+
+a.contact-info-item-vertical-align {
+    display: flex;
+    align-items: center;
+    margin-right: 1.8rem;
+    margin-top: 0.8rem;
     text-decoration: none;
     color: var(--semi-black);
     align-items: center;
 }
 
 .contact-info-item img {
-    width: 1.2rem;
-    height: 1.2rem;
-    margin-right: 0.3rem;
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-right: 0.5rem;
+}
+
+.contact-info-item-vertical-align img {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-right: 0.5rem;
 }
 
 .detail-infor {
-    margin-top: 3rem;
+    margin-top: 2.5rem;
     display: flex;
     gap: 5%;
 }
 
 .date {
-    font-family: 'AndaleMono', monospace;
+    font-family: 'WorkSans', monospace;
     font-size: 0.9rem;
     margin-bottom: 0.6rem;
     color: var(--semi-black);
+    opacity: 0.5;
+    font-weight: 500;
 }
 
 .left {
-    flex: 0 0 65%;
+    flex: 30%;
 }
 
 .right {
-    flex: 0 0 30%;
+    flex: 65%;
 }
 
 .experience-header,
@@ -150,7 +181,7 @@ a.contact-info-item {
     color: var(--blue);
     margin-bottom: 1.1rem;
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: 700;
     font-family: 'BergenText', sans-serif;
 }
 
@@ -168,7 +199,7 @@ a.contact-info-item {
 
 .company-name {
     color: var(--gray);
-    text-transform: capitalize;
+    display: inline-block;
 }
 
 ul {
@@ -187,10 +218,11 @@ ul.experience-item-details li {
     padding-left: 0.5rem;
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
+    line-height: var(--line-height);
 }
 
 .additional-section {
-    margin-bottom: 2rem;
+    margin-bottom: 1.2rem;
 }
 
 .additional-item {
@@ -201,4 +233,89 @@ ul.experience-item-details li {
 .additional-detail {
     font-size: 0.9rem;
     font-family: 'WorkSans', sans-serif;
+    line-height: var(--line-height);
+}
+
+.project-title {
+    font-weight: bold;
+    margin-bottom: 0.6rem;
+    color: var(--semi-black);
+    font-family: 'WorkSans', sans-serif;
+}
+
+ul.project-item-details li::marker {
+    content: ">";
+    font-family: 'WorkSans';
+}
+
+a.url-in-text {
+
+    color: var(--semi-black);
+    font-size: 0.9rem;
+    font-family: 'WorkSans', sans-serif;
+}
+
+.skill-section {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1.1rem;
+}
+
+.skill-item-container {
+    margin-right: 0.8rem;
+    margin-bottom: 0.7rem;
+}
+
+.skill-item {
+    border-radius: 4px;
+    border-style: dashed;
+    border-color: var(--semi-black-50);
+    border-width: 1px;
+    text-align: center;
+    color: var(--semi-black);
+    align-items: center;
+    padding: 0.2rem 0.3rem;
+    font-family: 'WorkSans', monospace;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin: auto;
+}
+
+.skill-item img {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-right: 0.2rem;
+}
+
+.name-and-image {
+    margin-top: 1rem;
+    margin-bottom: 1.4rem;
+    display: flex;
+    gap: 5%;
+}
+
+.name-flex {
+    flex: 0 0 65%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.image-flex {
+    flex: 0 0 30%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 7rem;
+    height: 7rem;
+    object-fit: cover;
+    float: right;
+    padding: 0.25rem;
+    border: 0.2rem dashed var(--blue);
+}
+
+.extra-vertical-spacing {
+    margin-bottom: 2rem;
 }
