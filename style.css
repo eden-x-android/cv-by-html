@@ -12,7 +12,7 @@ config margin for top and bottom page in print mode
 }
 
 @media print {
-    .break_page {
+    .page-break {
         page-break-after: always;
     }
 }
@@ -103,13 +103,18 @@ h1 {
     font-family: 'WorkSans', monospace;
     font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 1.4rem;
     font-size: 1.1rem;
 }
 
 .contact-info {
     display: flex;
     flex-wrap: wrap;
+    font-family: 'WorkSans', monospace;
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+
+.contact-info-vertical-align {
     font-family: 'WorkSans', monospace;
     font-weight: 400;
     font-size: 0.9rem;
@@ -125,7 +130,23 @@ a.contact-info-item {
     align-items: center;
 }
 
+a.contact-info-item-vertical-align {
+    display: flex;
+    align-items: center;
+    margin-right: 1.8rem;
+    margin-top: 0.8rem;
+    text-decoration: none;
+    color: var(--semi-black);
+    align-items: center;
+}
+
 .contact-info-item img {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-right: 0.5rem;
+}
+
+.contact-info-item-vertical-align img {
     width: 1.1rem;
     height: 1.1rem;
     margin-right: 0.5rem;
@@ -264,4 +285,37 @@ a.url-in-text {
     width: 1.1rem;
     height: 1.1rem;
     margin-right: 0.2rem;
+}
+
+.name-and-image {
+    margin-top: 1rem;
+    margin-bottom: 1.4rem;
+    display: flex;
+    gap: 5%;
+}
+
+.name-flex {
+    flex: 0 0 65%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.image-flex {
+    flex: 0 0 30%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 7rem;
+    height: 7rem;
+    object-fit: cover;
+    float: right;
+    padding: 0.25rem;
+    border: 0.2rem dashed var(--blue);
+}
+
+.extra-vertical-spacing {
+    margin-bottom: 2rem;
 }
