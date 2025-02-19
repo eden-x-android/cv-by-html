@@ -56,7 +56,7 @@ config margin for top and bottom page in print mode
     --semi-black: #334155;
     --semi-black-10: #33415519;
     --semi-black-50: #3341557F;
-    --semi-black-60: #33415599;
+    --semi-black-60: #334155A5;
     --gray: #7B7B7B;
     --light-black: #334155;
     --white: #ffffff;
@@ -328,7 +328,7 @@ a.url-in-text {
 }
 
 .name-flex {
-    flex: 0 0 65%;
+    flex: 0 0 100%;
     margin-top: auto;
     margin-bottom: auto;
 }
@@ -339,12 +339,12 @@ a.url-in-text {
 
 .avatar {
     border-radius: 50%;
-    width: 7.5rem;
-    height: 7.5rem;
+    width: 8rem;
+    height: 8rem;
     object-fit: cover;
     float: right;
-    padding: 0.25rem;
-    border: 0.2rem dashed var(--blue);
+    padding: 0.3rem;
+    border: 0.2rem solid var(--blue);
 }
 
 .extra-vertical-spacing {
