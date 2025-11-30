@@ -52,11 +52,19 @@ config margin for top and bottom page in print mode
 
 :root {
     --blue: #017BFE;
-    --semi-black: #363636;
+    --blue-20: #017BFE33;
+    --semi-black: #334155;
+    --semi-black-10: #33415519;
+    --semi-black-50: #3341557F;
+    --semi-black-60: #334155A5;
     --gray: #7B7B7B;
-    --light-black: #484848;
+    --light-black: #334155;
     --white: #ffffff;
-    --semi-black-50: #363636;
+    --underline: #9a9a9a;
+    --geyser: #CBD5E1;
+    --geyser-50: #CBD5E17F;
+    --catskill-white: #f1f5f9;
+    --slate-gray: #64748B;
     --line-height: 1.35;
 }
 
@@ -104,6 +112,7 @@ h1 {
     font-size: 1rem;
     font-weight: 600;
     font-size: 1.1rem;
+    margin-bottom: 0.6rem;
 }
 
 .contact-info {
@@ -123,8 +132,8 @@ h1 {
 a.contact-info-item {
     display: flex;
     align-items: center;
-    margin-right: 1.8rem;
-    margin-bottom: 0.6rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
     text-decoration: none;
     color: var(--semi-black);
     align-items: center;
@@ -162,27 +171,27 @@ a.contact-info-item-vertical-align {
     font-family: 'WorkSans', monospace;
     font-size: 0.9rem;
     margin-bottom: 0.6rem;
-    color: var(--semi-black);
-    opacity: 0.5;
+    color: var(--semi-black-60);
     font-weight: 500;
 }
 
 .left {
-    flex: 30%;
+    flex: 20%;
 }
 
 .right {
-    flex: 65%;
+    flex: 75%;
 }
 
 .experience-header,
 .additional-header {
     font-size: 1.2rem;
     color: var(--blue);
-    margin-bottom: 1.1rem;
+    /* margin-bottom: 1.1rem; */
     text-transform: uppercase;
     font-weight: 700;
     font-family: 'BergenText', sans-serif;
+    line-height: var(--line-height);
 }
 
 .experience-item {
@@ -198,7 +207,7 @@ a.contact-info-item-vertical-align {
 }
 
 .company-name {
-    color: var(--gray);
+    color: var(--semi-black-60);
     display: inline-block;
 }
 
@@ -206,19 +215,37 @@ ul {
     list-style: none;
     margin-left: 0;
     padding-left: 1rem;
-
 }
 
-ul.experience-item-details li::marker {
+/* ul.experience-item-details li::marker {
     content: ">";
     font-family: 'WorkSans';
-}
+} */
 
 ul.experience-item-details li {
-    padding-left: 0.5rem;
+    padding-left: 1.5rem;
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
     line-height: var(--line-height);
+    position: relative;
+    list-style: none;
+}
+
+ul.experience-item-details li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    /* Adjust to vertically align the bullet with text */
+    top: 4px;
+    width: 10px;
+    /* Size of the custom bullet */
+    height: 10px;
+    /* Size of the custom bullet */
+    background-color: var(--geyser);
+    /* Default or custom color */
+    border-radius: 3px;
+    /* Round corner square */
+    display: inline-block;
 }
 
 .additional-section {
@@ -227,7 +254,6 @@ ul.experience-item-details li {
 
 .additional-item {
     margin-bottom: 1.1rem;
-
 }
 
 .additional-detail {
@@ -243,40 +269,48 @@ ul.experience-item-details li {
     font-family: 'WorkSans', sans-serif;
 }
 
-ul.project-item-details li::marker {
+/* ul.project-item-details li::marker {
     content: ">";
     font-family: 'WorkSans';
-}
+} */
 
 a.url-in-text {
-
     color: var(--semi-black);
     font-size: 0.9rem;
     font-family: 'WorkSans', sans-serif;
+    text-decoration: underline;
+    text-decoration-color: var(--semi-black-10);
+    text-underline-offset: -1px;
+    text-decoration-thickness: 4px;
+    text-decoration-skip-ink: none;
+}
+
+.text-along-with-url {
+    color: var(--semi-black);
+    font-size: 0.9rem;
+    font-family: 'WorkSans', sans-serif;
+    text-decoration: none;
 }
 
 .skill-section {
     display: flex;
     flex-wrap: wrap;
+    row-gap: 0.7rem;
     margin-bottom: 1.1rem;
 }
 
 .skill-item-container {
     margin-right: 0.8rem;
-    margin-bottom: 0.7rem;
 }
 
 .skill-item {
-    border-radius: 4px;
-    border-style: dashed;
-    border-color: var(--semi-black-50);
-    border-width: 1px;
+    border-radius: 6px;
     text-align: center;
+    background-color: var(--catskill-white);
     color: var(--semi-black);
     align-items: center;
-    padding: 0.2rem 0.3rem;
+    padding: 0.2rem 0.4rem;
     font-family: 'WorkSans', monospace;
-    font-weight: 700;
     font-size: 0.9rem;
     margin: auto;
 }
@@ -289,31 +323,28 @@ a.url-in-text {
 
 .name-and-image {
     margin-top: 1rem;
-    margin-bottom: 1.4rem;
     display: flex;
     gap: 5%;
 }
 
 .name-flex {
-    flex: 0 0 65%;
+    flex: 0 0 100%;
     margin-top: auto;
     margin-bottom: auto;
 }
 
 .image-flex {
     flex: 0 0 30%;
-    margin-top: auto;
-    margin-bottom: auto;
 }
 
 .avatar {
     border-radius: 50%;
-    width: 7rem;
-    height: 7rem;
+    width: 8rem;
+    height: 8rem;
     object-fit: cover;
     float: right;
-    padding: 0.25rem;
-    border: 0.2rem dashed var(--blue);
+    padding: 0.3rem;
+    border: 0.2rem solid var(--blue);
 }
 
 .extra-vertical-spacing {
