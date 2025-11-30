@@ -1,79 +1,78 @@
 # CV by HTML
 
-A professional CV/Resume project featuring both a static HTML version and an interactive React-based CV builder application.
+A professional CV/Resume project featuring both a static HTML version and an interactive React-based CV builder application with **synchronized data and styles**.
 
 ## 📋 Project Overview
 
-This repository contains two implementations of a professional CV:
+This repository contains two implementations of a professional CV that **share the same data source and CSS styles**:
 
-1. **Static HTML CV** - A clean, print-ready CV built with pure HTML and CSS
-2. **CV Builder App** - An interactive React application for creating and customizing CVs with live preview
+1. **Static HTML CV** - A clean, print-ready CV that loads data from JSON
+2. **CV Builder App** - An interactive React application for editing and customizing CVs with live preview
+
+**Key Feature**: Both versions use `cv-data.json` as the single source of truth, ensuring changes made in the CV builder automatically appear in the static HTML version.
 
 ## 🚀 Features
 
-### Static HTML CV
+### Shared Features
+- **Synchronized data** - Both versions read from the same `cv-data.json` file
+- **Consistent styling** - Shared CSS ensures identical appearance
 - **Print-optimized** - Configured for A4 paper size with proper margins
 - **Custom typography** - Uses BergenText, WorkSans, and AndaleMono fonts
+- **Professional design** - Clean, modern aesthetic with custom color scheme
+
+### Static HTML CV
+- **Dynamic data loading** - Fetches content from JSON file
 - **Responsive design** - Adapts to different screen sizes
-- **Professional styling** - Clean, modern design with custom color scheme
-- **Sections included**:
-  - Personal information with avatar
-  - Professional summary
-  - Work experience
-  - Projects portfolio
-  - Education
-  - Skills & Tools
-  - Languages
+- **Requires local server** - Must be served via HTTP (not file://)
 
 ### CV Builder App
 - **Live preview** - See changes in real-time as you edit
 - **Interactive form** - Easy-to-use interface for editing CV content
+- **Data persistence** - Save changes back to JSON file
 - **Print/PDF export** - Generate PDF directly from the browser
-- **Customizable sections** - Toggle visibility of different CV sections
-- **Modern tech stack** - Built with React 19 and Vite
+- **Customizable sections** - Toggle visibility and page breaks
 
 ## 📁 Project Structure
 
 ```
 cv-by-html/
-├── cv.html              # Static HTML CV
-├── style.css            # Styles for static CV
-├── fonts/               # Custom font files
-│   ├── BergenText-Regular.otf
-│   ├── BergenText-SemiBold.otf
-│   ├── WorkSans-Light.ttf
-│   ├── WorkSans-SemiBold.ttf
-│   ├── AndaleMono-Regular.ttf
-│   └── AndaleMono-Bold.otf
-├── images/              # Icons and avatar
+├── cv-data.json         # 🔄 SHARED: Single source of truth for CV data
+├── cv.html              # Static HTML CV (loads from cv-data.json)
+├── style.css            # 🔄 SHARED: Main stylesheet
+├── server.py            # Simple HTTP server for static CV
+├── fonts/               # 🔄 SHARED: Custom font files
+├── images/              # 🔄 SHARED: Icons and avatar
 └── cv-builder/          # React CV builder application
     ├── src/
-    │   ├── App.jsx
+    │   ├── App.jsx      # Main app with data loading/saving
     │   ├── components/
     │   │   ├── CVForm.jsx
     │   │   └── CVPreview.jsx
-    │   └── ...
+    │   └── CVPreview.css # CV preview styles (imports shared fonts)
+    ├── public/
+    │   ├── fonts/       # Copy of shared fonts
+    │   ├── images/      # Copy of shared images
+    │   └── style.css    # Copy of shared styles
     ├── package.json
-    └── vite.config.js
+    └── vite.config.js   # API endpoints for data persistence
 ```
 
 ## 🛠️ Getting Started
 
 ### Static HTML CV
 
-Simply open `cv.html` in your web browser:
+The static HTML CV requires a local server to load the JSON data. Use the provided server script:
 
 ```bash
-# Option 1: Direct file open
-open cv.html
+# Start the server
+python3 server.py
 
-# Option 2: Using a local server (recommended)
-python -m http.server 8000
-# Then navigate to http://localhost:8000/cv.html
+# Then open in your browser:
+# http://localhost:8000/cv.html
 ```
 
 To print or save as PDF:
-1. Open `cv.html` in your browser
+1. Open `cv.html` in your browser (via the server)
 2. Press `Cmd+P` (Mac) or `Ctrl+P` (Windows/Linux)
 3. Select "Save as PDF" as the destination
 
@@ -103,19 +102,45 @@ npm run preview  # Preview production build
 npm run lint     # Run ESLint
 ```
 
+## 🔄 How Synchronization Works
+
+1. **Single Data Source**: `cv-data.json` contains all CV content
+2. **CV Builder**: 
+   - Loads data from `/api/load-cv` endpoint on startup
+   - Saves changes to `/api/save-cv` endpoint (updates `cv-data.json`)
+3. **Static HTML**: 
+   - Fetches data from `cv-data.json` on page load
+   - Dynamically renders content using JavaScript
+4. **Workflow**:
+   - Edit CV in the builder app → Click "Save Changes"
+   - Refresh static HTML → See updated content
+
 ## 🎨 Customization
 
-### Static HTML CV
+### Editing CV Content
 
-Edit `cv.html` to update your personal information, experience, projects, etc.
-Modify `style.css` to change colors, fonts, and layout.
+**Recommended**: Use the CV Builder app for the best editing experience.
 
-### CV Builder App
+1. Start the CV builder: `cd cv-builder && npm run dev`
+2. Edit your information in the form
+3. Click "Save Changes" to persist to `cv-data.json`
+4. Changes automatically appear in both versions
 
-The CV data is stored in the component state in `src/App.jsx`. You can:
-- Edit default values in the initial state
-- Modify the form fields in `src/components/CVForm.jsx`
-- Customize the preview layout in `src/components/CVPreview.jsx`
+**Alternative**: Directly edit `cv-data.json` (requires manual JSON editing)
+
+### Customizing Styles
+
+Edit `style.css` to change colors, fonts, and layout. The changes will apply to both versions.
+
+**Important**: After editing `style.css`, copy it to the cv-builder:
+```bash
+cp style.css cv-builder/public/
+```
+
+Similarly, if you update fonts or images:
+```bash
+cp -r fonts images cv-builder/public/
+```
 
 ## 🎯 Color Scheme
 

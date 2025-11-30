@@ -26,9 +26,93 @@
 /* Ensure the preview container has the white background of the paper */
 /* Ensure the preview container has the white background of the paper */
 .preview-container .cv-page {
+    flex: 1;
+    padding: 2rem;
     background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    /* margin: 20px; */
+    overflow-y: auto;
+    max-width: 500px;
+}
+
+.form-container h1 {
+    margin-bottom: 1.5rem;
+    color: #017BFE;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.save-button,
+.print-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.save-button {
+    background-color: #017BFE;
+    color: white;
+}
+
+.save-button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+.save-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.print-button {
+    background-color: #28a745;
+    color: white;
+}
+
+.print-button:hover {
+    background-color: #218838;
+}
+
+.save-message {
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.save-message.success {
+    color: #28a745;
+    background-color: #d4edda;
+}
+
+.save-message.error {
+    color: #dc3545;
+    background-color: #f8d7da;
+}
+
+.loading,
+.error {
+    padding: 2rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.error {
+    color: #dc3545;
+}
+
+.preview-container {
+    flex: 2;
+    padding: 2rem;
+    overflow-y: auto;
+    background-color: #e9ecef;
 }
 
 .cv-form input,
