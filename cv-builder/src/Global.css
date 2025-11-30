@@ -1,0 +1,63 @@
+/* Global Styles & Resets */
+
+@font-face {
+    font-family: BergenText;
+    src: url('/fonts/BergenText-Regular.otf');
+}
+
+@font-face {
+    font-family: BergenText;
+    src: url('/fonts/BergenText-SemiBold.otf');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: WorkSans;
+    src: url('/fonts/WorkSans-Light.ttf');
+}
+
+@font-face {
+    font-family: WorkSans;
+    src: url('/fonts/WorkSans-SemiBold.ttf');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: AndaleMono;
+    src: url('/fonts/AndaleMono-Regular.ttf');
+}
+
+@font-face {
+    font-family: AndaleMono;
+    src: url('/fonts/AndaleMono-Bold.otf');
+    font-weight: 700;
+}
+
+:root {
+    --blue: #017BFE;
+    --blue-20: #017BFE33;
+    --semi-black: #334155;
+    --semi-black-10: #33415519;
+    --semi-black-50: #3341557F;
+    --semi-black-60: #334155A5;
+    --gray: #7B7B7B;
+    --light-black: #334155;
+    --white: #ffffff;
+    --underline: #9a9a9a;
+    --geyser: #CBD5E1;
+    --geyser-50: #CBD5E17F;
+    --catskill-white: #f1f5f9;
+    --slate-gray: #64748B;
+    --line-height: 1.35;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    font-family: 'WorkSans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
