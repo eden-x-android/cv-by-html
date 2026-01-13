@@ -71,12 +71,12 @@ Open your browser and navigate to `http://localhost:5173`.
 
 ## Project Structure
 
--   `src/components/CVForm.jsx`: The input form for editing data.
--   `src/components/CVPreview.jsx`: The A4 preview component.
--   `src/App.jsx`: Main state management and layout.
--   `src/CVPreview.css`: Styles specific to the CV print layout.
--   `src/App.css`: Styles for the application UI.
--   `vite.config.js`: Vite configuration, including the custom avatar upload middleware.
+-   `cv-builder/src/components/CVForm.jsx`: The input form for editing data.
+-   `cv-builder/src/components/CVPreview.jsx`: The A4 preview component.
+-   `cv-builder/src/App.jsx`: Main state management and layout.
+-   `cv-builder/src/CVPreview.css`: Styles specific to the CV print layout.
+-   `cv-builder/src/App.css`: Styles for the application UI.
+-   `cv-builder/vite.config.js`: Vite configuration, including the custom avatar upload middleware.
 
 ## License
 
