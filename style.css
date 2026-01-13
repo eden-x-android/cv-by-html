@@ -328,7 +328,7 @@ a.url-in-text {
 }
 
 .name-flex {
-    flex: 0 0 65%;
+    flex: 0 0 100%;
     margin-top: auto;
     margin-bottom: auto;
 }
