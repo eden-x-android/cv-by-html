@@ -1,183 +1,83 @@
 # CV Builder
 
-An interactive React-based CV builder application with live preview and data persistence. Part of the synchronized CV system that shares data with the static HTML version.
+A powerful, React-based application designed to help you build, preview, and export a professional CV with ease. This tool provides a real-time preview of your resume as you edit, ensuring it looks perfect for print or PDF export.
 
 ## Features
 
-- **Live Preview** - See your CV update in real-time as you edit
-- **Data Persistence** - Save changes to shared `cv-data.json` file
-- **Interactive Forms** - Easy-to-use interface for all CV sections
-- **Print/PDF Export** - Generate PDF directly from browser
-- **Synchronized Data** - Changes sync with static HTML CV
-- **Page Break Control** - Customize pagination for printing
-- **Avatar Upload** - Upload and manage your profile picture
+-   **Real-Time Preview**: See changes instantly as you type.
+-   **Print-Ready Layout**: Optimized for A4 paper size with precise margins and styling.
+-   **Dynamic Content**: Easily add, remove, or reorder Experience, Projects, Education, Skills, Tools, and Languages.
+-   **Avatar Management**:
+    -   Upload your profile picture directly within the app.
+    -   Automatic validation ensures images are square.
+    -   Auto-renaming prevents filename conflicts.
+-   **Smart Page Breaks**:
+    -   **Section Level**: Force major sections (e.g., "Projects") to start on a new page.
+    -   **Item Level**: Insert page breaks after specific items to avoid awkward splits.
+    -   **Visual Indicators**: See exactly where page breaks occur in the preview (hidden during print).
+-   **Responsive UI**: A modern, split-screen interface that adapts to tablets and mobile devices.
 
 ## Tech Stack
 
-- **React 19** - Modern React with hooks
-- **Vite** - Fast build tool and dev server
-- **Custom API** - Built-in endpoints for data persistence
-- **CSS Variables** - Consistent styling with shared design system
+-   **Frontend**: React, CSS
+-   **Build Tool**: Vite
+-   **Styling**: Custom CSS with responsive design
 
 ## Getting Started
 
-### Install Dependencies
+### Prerequisites
 
-```bash
-npm install
-```
+-   Node.js (v14 or higher)
+-   npm (v6 or higher)
 
-### Run Development Server
+### Installation
+
+1.  Clone the repository:
+    ```bash
+    git clone <repository-url>
+    cd cv-builder
+    ```
+
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+
+## Usage
+
+### Running the Application
+
+Start the development server:
 
 ```bash
 npm run dev
 ```
 
-The app will be available at `http://localhost:5173` (or another port if 5173 is in use).
+Open your browser and navigate to `http://localhost:5173`.
 
-### Build for Production
+### Building Your CV
 
-```bash
-npm run build
-```
-
-### Preview Production Build
-
-```bash
-npm run preview
-```
-
-## How It Works
-
-### Data Synchronization
-
-The CV builder uses a shared `cv-data.json` file located in the parent directory:
-
-1. **On Load**: Fetches data from `/api/load-cv` endpoint
-2. **On Save**: Posts data to `/api/save-cv` endpoint
-3. **Shared Source**: Both this app and the static HTML CV read from the same JSON file
-
-### API Endpoints
-
-Configured in `vite.config.js`:
-
-- `GET /api/load-cv` - Load CV data from JSON file
-- `POST /api/save-cv` - Save CV data to JSON file  
-- `POST /api/upload-avatar` - Upload avatar image
-
-### Workflow
-
-1. Edit your CV using the form on the left
-2. See live preview on the right
-3. Click "Save Changes" to persist to `cv-data.json`
-4. Changes automatically appear in static HTML version after refresh
+1.  **Personal Info**: Update your name, title, contact details, and upload your avatar.
+2.  **Sections**: Fill in your Summary, Experience, Projects, etc.
+    -   Use the **"Add"** buttons to create new entries.
+    -   Use the **"Remove"** buttons to delete entries.
+3.  **Page Layout**:
+    -   Check **"Start on New Page"** next to a section header to push it to the next page.
+    -   Check **"Page Break After"** inside an item to force a break after that specific entry.
+4.  **Export**:
+    -   Click the green **"Print / Save as PDF"** button.
+    -   In the print dialog, choose **"Save as PDF"**.
+    -   Ensure **"Background graphics"** is unchecked (unless you want to print the visual page break lines, which are hidden by default).
 
 ## Project Structure
 
-```
-cv-builder/
-├── src/
-│   ├── App.jsx           # Main app with data loading/saving
-│   ├── App.css           # App layout and UI styles
-│   ├── components/
-│   │   ├── CVForm.jsx    # Interactive form for editing
-│   │   └── CVPreview.jsx # Live CV preview
-│   ├── CVPreview.css     # CV styling (matches static HTML)
-│   └── main.jsx          # Entry point
-├── public/
-│   ├── fonts/            # Shared custom fonts
-│   ├── images/           # Shared icons and images
-│   └── style.css         # Shared base styles
-├── vite.config.js        # Vite config with API endpoints
-└── package.json
-```
-
-## Customization
-
-### Editing CV Content
-
-Use the interactive form to edit all sections:
-- Personal Information
-- Summary
-- Social Links
-- Work Experience
-- Projects
-- Education
-- Skills
-- Tools
-- Languages
-
-### Styling
-
-The CV preview uses shared styles from:
-- `public/style.css` - Base styles (copied from parent)
-- `src/CVPreview.css` - CV-specific styles with fonts and variables
-- `src/App.css` - App layout and form styles
-
-### Adding New Sections
-
-1. Update the data structure in `cv-data.json`
-2. Add form fields in `CVForm.jsx`
-3. Add preview rendering in `CVPreview.jsx`
-4. Update the static HTML template if needed
-
-## Print/PDF Export
-
-Click the "Print / Save as PDF" button to:
-1. Open browser print dialog
-2. Select "Save as PDF" as destination
-3. Adjust settings if needed
-4. Save your professional CV
-
-## Synchronization with Static HTML
-
-This app shares data with the static HTML CV in the parent directory:
-
-```
-Parent Directory/
-├── cv-data.json          # ← Shared data source
-├── cv.html               # Static HTML version
-├── style.css             # Shared styles
-└── cv-builder/           # This React app
-```
-
-**To see changes in static HTML:**
-1. Make edits in this CV builder
-2. Click "Save Changes"
-3. Run `python3 server.py` in parent directory
-4. Open `http://localhost:8000/cv.html`
-5. Your changes will be reflected!
-
-## Development
-
-### Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-
-### Hot Module Replacement
-
-Vite provides fast HMR for instant feedback during development. Changes to components update immediately without full page reload.
-
-## Troubleshooting
-
-**Data not loading?**
-- Check that `../cv-data.json` exists in parent directory
-- Verify the dev server is running
-- Check browser console for errors
-
-**Save not working?**
-- Ensure you have write permissions to parent directory
-- Check that `cv-data.json` is not read-only
-- Verify API endpoints in `vite.config.js`
-
-**Styles not matching static HTML?**
-- Ensure fonts and images are copied to `public/` directory
-- Run: `cp -r ../fonts ../images ../style.css public/`
-- Restart dev server after copying files
+-   `src/components/CVForm.jsx`: The input form for editing data.
+-   `src/components/CVPreview.jsx`: The A4 preview component.
+-   `src/App.jsx`: Main state management and layout.
+-   `src/CVPreview.css`: Styles specific to the CV print layout.
+-   `src/App.css`: Styles for the application UI.
+-   `vite.config.js`: Vite configuration, including the custom avatar upload middleware.
 
 ## License
 
-Part of the CV by HTML project. Free for personal and commercial use.
+[MIT](LICENSE)

@@ -4,237 +4,415 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Toan Thai</title>
+    <title></title>
     <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-    <div class="container" id="cv-container">
-        <div id="loading-message" style="text-align: center; padding: 2rem; font-size: 1.2rem;">
-            Loading CV data...
+    <div class="container">
+        <div class="personal-infor">
+            <div class="name-and-image">
+                <div class="name-flex">
+                    <h1>Toan Thai</h1>
+                    <div class="job-title">Android Developer</div>
+                    <div class="contact-info">
+                        <!-- <a href="tel:0977472667" class="contact-info-item">
+                            <span>+84 977472667</span>
+                        </a> -->
+                        <a href="mailto:toanthai.me@gmail.com" class="contact-info-item">
+                            <span>toanthai.me@gmail.com</span>
+                        </a>
+                        <a class="contact-info-item">
+                            <span> | </span>
+                        </a>
+                        <a href="tel:0977472667" class="contact-info-item">
+                            <span>+84 977472667</span>
+                        </a>
+                        <a class="contact-info-item">
+                            <span> | </span>
+                        </a>
+                        <a class="contact-info-item">
+                            <span>Ho Chi Minh City, Vietnam</span>
+                        </a>
+                    </div>
+                    <!-- <div class="contact-info">
+                        <a href="mailto:toanthai.me@gmail.com" class="contact-info-item">
+                            <span>toanthai.me@gmail.com</span>
+                        </a>
+                    </div>
+                    <div class="contact-info">
+                        <a class="contact-info-item">
+                            <span>Binh Thanh District, Ho Chi Minh City, Vietnam</span>
+                        </a>
+                    </div> -->
+                </div>
+                <div class="image-flex">
+                    <img class="avatar" src="./images/me1.jpg" alt="Mountain">
+                </div>
+            </div>
+
         </div>
-    </div>
 
-    <script>
-        // Calculate years of experience
-        function calculateYearsOfExperience() {
-            const currentYear = new Date().getFullYear();
-            return currentYear - 2021; // Started in 2021
-        }
+        <!---->
+        <div class="detail-infor">
+            <div class="left">
+                <div class="additional-section">
+                    <div class="experience-header">SUMMARY</div>
+                </div>
+            </div>
 
-        // Render the CV with data from JSON
-        async function renderCV() {
-            try {
-                const response = await fetch('./cv-data.json');
-                const data = await response.json();
-                
-                const container = document.getElementById('cv-container');
-                container.innerHTML = `
-                    <div class="personal-infor">
-                        <div class="name-and-image">
-                            <div class="name-flex">
-                                <h1>${data.personalInfo.name}</h1>
-                                <div class="job-title">${data.personalInfo.jobTitle}</div>
-                                <div class="contact-info">
-                                    ${data.personalInfo.email ? `
-                                        <a href="mailto:${data.personalInfo.email}" class="contact-info-item">
-                                            <span>${data.personalInfo.email}</span>
-                                        </a>
-                                    ` : ''}
-                                    ${data.personalInfo.email && data.personalInfo.phone ? '<a class="contact-info-item"><span> | </span></a>' : ''}
-                                    ${data.personalInfo.phone ? `
-                                        <a href="tel:${data.personalInfo.phone}" class="contact-info-item">
-                                            <span>${data.personalInfo.phone}</span>
-                                        </a>
-                                    ` : ''}
-                                    ${(data.personalInfo.email || data.personalInfo.phone) && data.personalInfo.address ? '<a class="contact-info-item"><span> | </span></a>' : ''}
-                                    ${data.personalInfo.address ? `
-                                        <a class="contact-info-item">
-                                            <span>${data.personalInfo.address}</span>
-                                        </a>
-                                    ` : ''}
-                                </div>
-                            </div>
-                            ${data.personalInfo.avatar ? `
-                                <div class="image-flex">
-                                    <img class="avatar" src="${data.personalInfo.avatar}" alt="Avatar">
-                                </div>
-                            ` : ''}
+            <div class="right">
+                <div class="additional-section">
+                    <div class="additional-item">
+                        <div class="additional-detail">
+                            <p>Born in 1999, I have been actively working in Android development for over <span
+                                    id="year-difference"></span> years in building, deploying and maintaining applications on the Android platform, with a focus
+                                on Kotlin and
+                                Java. Throughout my experience, I am always
+                                interested in honing my skills in new trending technologies and the latest updates of Android SDK.</p>
                         </div>
                     </div>
 
-                    <!-- Summary Section -->
-                    <div class="detail-infor">
-                        <div class="left">
-                            <div class="additional-section">
-                                <div class="experience-header">SUMMARY</div>
-                            </div>
+                    <div class="contact-info-vertical-align">
+
+                        <a href="https://www.linkedin.com/in/toanthai/" class="contact-info-item-vertical-align">
+                            <img src="./images/ic_linkedin.svg" />
+                            <span>linkedin.com/in/toanthai</span>
+                        </a>
+                        <a href="https://github.com/thaiquoctoanvn" class="contact-info-item-vertical-align">
+                            <img src="./images/ic_github.svg" />
+                            <span>github.com/thaiquoctoanvn</span>
+                        </a>
+                        <!-- <a href="https://toanthaiportfolio.web.app/" class="contact-info-item-vertical-align">
+                            <img src="./images/ic_link.svg" />
+                            <span>toanthaiportfolio.web.app</span>
+                        </a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!---->
+        <div class="detail-infor">
+            <div class="left">
+                <div class="additional-section">
+                    <div class="experience-header">RELEVANT EXPERIENCE</div>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="additional-section">
+                    <div class="experience-item">
+                        <div class="company-title">Android Developer <span class="company-name">at Silicon Stack</span>
                         </div>
-                        <div class="right">
-                            <div class="additional-section">
-                                <div class="additional-item">
-                                    <div class="additional-detail">
-                                        <p>${data.summary.replace(/\d+/, calculateYearsOfExperience())}</p>
-                                    </div>
-                                </div>
-                                <div class="contact-info-vertical-align">
-                                    ${data.socials.linkedin ? `
-                                        <a href="${data.socials.linkedin}" class="contact-info-item-vertical-align">
-                                            <img src="./images/ic_linkedin.svg" alt="LinkedIn" />
-                                            <span>${data.socials.linkedin.replace('https://', '')}</span>
-                                        </a>
-                                    ` : ''}
-                                    ${data.socials.github ? `
-                                        <a href="${data.socials.github}" class="contact-info-item-vertical-align">
-                                            <img src="./images/ic_github.svg" alt="GitHub" />
-                                            <span>${data.socials.github.replace('https://', '')}</span>
-                                        </a>
-                                    ` : ''}
-                                </div>
-                            </div>
-                        </div>
+
+                        <p class="date">Jun 2022 - Present // Ho Chi Minh City, Vietnam</p>
+
+                        <ul class="experience-item-details">
+                            <li>Discuss app business with the BA team to understand client’s points.</li>
+                            <li>Work the Design team to delivery better UI to end users.</li>
+                            <li>Fix bugs and research solutions that could be
+                                completed client’s problems.</li>
+                            <li>Improve codebases and UX in existing applications.</li>
+                        </ul>
                     </div>
 
-                    <!-- Experience Section -->
-                    ${data.sectionSettings?.experience ? '<div class="page-break"></div>' : ''}
-                    <div class="detail-infor">
-                        <div class="left">
-                            <div class="additional-section">
-                                <div class="experience-header">RELEVANT EXPERIENCE</div>
-                            </div>
+                    <div class="experience-item">
+                        <div class="company-title">Android Developer <span class="company-name">at gumi Vietnam</span>
                         </div>
-                        <div class="right">
-                            <div class="additional-section">
-                                ${data.experience.map(exp => `
-                                    <div class="experience-item">
-                                        <div class="company-title">
-                                            ${exp.title} <span class="company-name">at ${exp.company}</span>
+
+                        <p class="date">Sep 2021 - Jun 2022 // Ho Chi Minh City, Vietnam</p>
+
+                        <ul class="experience-item-details">
+                            <li>Developed and maintained Android application
+                                for Japanese customers.</li>
+                            <li>Analyzed of requirements and suggesting reasonable
+                                solutions with team.</li>
+                            <li>Kept reporting to project's leader and mentors daily.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!---->
+        <div class="detail-infor">
+            <div class="left">
+                <div class="additional-section">
+                    <div class="additional-header">PROJECTS</div>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="additional-section">
+
+                    <div class="additional-item">
+                        <div class="project-title">Feedjoy</div>
+                        <ul class="experience-item-details">
+                            <li>A food ordering app for a Vietnamese vendor in Australia.</li>
+                            <li>The app was integrated Google Pay api, Custom animations, Google Map api, Biometric
+                                authentication, Coroutines and Koin.</li>
+
+                        </ul>
+                    </div>
+                    <!--Break page in print mode-->
+                    <div class="page-break"></div>
+                    <div class="additional-item">
+                        <div class="project-title">Yakult Health Care</div>
+                        <ul class="experience-item-details">
+                            <li>App for tracking sleeping and walking then summarize and give advices in a report to
+                                users.</li>
+                            <li>Technologies used include Google Fitness api, Amazon Dynamo DB, Custom charts,
+                                Navigation Component, Hilt and Clean Architecture.</li>
+
+                        </ul>
+                    </div>
+                    <div class="additional-item">
+                        <div class="project-title">Apricot</div>
+                        <ul class="experience-item-details">
+                            <li>There were a lot of new apps that were built from the same source code. Some of them
+                                provided only paid content and others offered watching ad to view content.</li>
+                            <li>The project was made with multiple build variants in Gradle, Java, Google Admob, Google
+                                Billing.</li>
+
+                        </ul>
+                    </div>
+                    <div class="additional-item">
+                        <div class="project-title">AVN Live</div>
+                        <ul class="experience-item-details">
+                            <li>An internal social network app for sharing cooking recipe. Some core functions include
+                                share images and videos, mention friends in comments and chat.</li>
+                            <li>The project was made with Java, RxAndroid, Firebase.</li>
+
+                        </ul>
+                    </div>
+                    <div class="additional-item">
+                        <div class="project-title">EasyCheck</div>
+                        <ul class="experience-item-details">
+                            <li>An app for car repair booking for car dealerships. A part of the booking system that
+                                each dealership can customize depends on their own services.</li>
+                            <li>Deployment on Android and iOS.</li>
+                            <li>Build with Flutter SDK.</li>
+
+                        </ul>
+                    </div>
+                    <div class="additional-item">
+                        <div class="project-title">Qik Font (Side Project)</div>
+                        <ul class="experience-item-details">
+                            <li>An simple tool to create typography on your image.</li>
+                            <li>Technologies used include Jetpack Compose, Google Admob, Room database, Kotlin Flows and
+                                Hilt.</li>
+                            <li>
+                                <p class="text-along-with-url">Google Play: <a
+                                        href="https://play.google.com/store/apps/details?id=io.edenx.qikfont"
+                                        class="url-in-text">https://play.google.com/store/apps/details?id=io.edenx.qikfont</a>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="additional-item">
+                        <div class="project-title">Color Battle (Side Project)</div>
+                        <ul class="experience-item-details">
+                            <li>A mini game to challenge how fast your fingers are.</li>
+                            <li>Made with Android views, Google Admob.</li>
+                            <li>
+                                <p class="text-along-with-url">Google Play: <a
+                                        href="https://play.google.com/store/apps/details?id=io.edenxwhistle.fingerchallenge"
+                                        class="url-in-text">https://play.google.com/store/apps/details?id=io.edenxwhistle.fingerchallenge</a>
+                                </p>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="additional-item">
+                        <div class="project-title">Better Screenshots (Side Project)</div>
+                        <ul class="experience-item-details">
+                            <li>A simple tool to create an colorful background for image.</li>
+                            <li>The app was built with Jetpack Compose, Google Admob.</li>
+                            <li>
+                                <p class="text-along-with-url">Google Play: <a
+                                        href="https://play.google.com/store/apps/details?id=io.edenxwhistle.betterscreenshot"
+                                        class="url-in-text">https://play.google.com/store/apps/details?id=io.edenxwhistle.betterscreenshot</a>
+                                </p>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!---->
+        <div class="detail-infor">
+            <div class="left">
+                <div class="additional-section">
+                    <div class="experience-header">EDUCATION</div>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="additional-item">
+                    <div class="additional-title">University of Information and
+                        Technology - VNUHCM</div>
+                    <div class="date">2017 - 2022 // HCMC, Vietnam</div>
+                    <div class="additional-detail">Engineer of Computer Network and Communication.</div>
+                </div>
+            </div>
+        </div>
+
+        <!---->
+        <div class="detail-infor">
+            <div class="left">
+                <div class="additional-section">
+                    <div class="experience-header">SKILLS</div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="skill-section">
+                    <div class="skill-item-container">
+                        <div class="skill-item">
+                            Android SDK
+                        </div>
+                    </div>
+                    <div class="skill-item-container">
+                        <div class="skill-item">Kotlin</div>
+                    </div>
+                    <div class="skill-item-container">
+                        <div class="skill-item">
+                            Java
+                        </div>
+                    </div>
+                    <div class="skill-item-container">
+                        <div class="skill-item">
+                            Jetpack Compose
+                        </div>
+                    </div>
+                    <div class="skill-item-container">
+                        <div class="skill-item">
+                            Google Play Billing
+                        </div>
+                    </div>
+                    <div class="skill-item-container">
+                        <div class="skill-item">
+                            Flutter
+                        </div>
+                    </div>
+                    <div class="skill-item-container">
+                        <div class="skill-item">
+                            Firebase
+                        </div>
+                    </div>
+                    <div class="skill-item-container">
+                        <div class="skill-item">
+                            Room Database
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="skill-section">
+                                    <div class="skill-item-container">
+                                        <div class="skill-item">
+                                            TOEIC Speaking & Writing
                                         </div>
-                                        <p class="date">${exp.date} // ${exp.location}</p>
-                                        <ul class="experience-item-details">
-                                            ${exp.details.map(detail => `<li>${detail}</li>`).join('')}
-                                        </ul>
+                
                                     </div>
-                                    ${exp.pageBreakAfter ? '<div class="page-break"></div>' : ''}
-                                `).join('')}
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Projects Section -->
-                    ${data.sectionSettings?.projects ? '<div class="page-break"></div>' : ''}
-                    <div class="detail-infor">
-                        <div class="left">
-                            <div class="additional-section">
-                                <div class="additional-header">PROJECTS</div>
-                            </div>
-                        </div>
-                        <div class="right">
-                            <div class="additional-section">
-                                ${data.projects.map(project => `
-                                    <div class="additional-item">
-                                        <div class="project-title">${project.name}</div>
-                                        <ul class="experience-item-details">
-                                            ${project.details.map(detail => `<li>${detail}</li>`).join('')}
-                                        </ul>
-                                    </div>
-                                    ${project.pageBreak || project.pageBreakAfter ? '<div class="page-break"></div>' : ''}
-                                `).join('')}
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Education Section -->
-                    ${data.sectionSettings?.education ? '<div class="page-break"></div>' : ''}
-                    <div class="detail-infor">
-                        <div class="left">
-                            <div class="additional-section">
-                                <div class="experience-header">EDUCATION</div>
-                            </div>
-                        </div>
-                        <div class="right">
-                            ${data.education.map(edu => `
-                                <div class="additional-item">
-                                    <div class="additional-title">${edu.school}</div>
-                                    <div class="date">${edu.date} // ${edu.location}</div>
-                                    <div class="additional-detail">${edu.degree}</div>
-                                </div>
-                                ${edu.pageBreakAfter ? '<div class="page-break"></div>' : ''}
-                            `).join('')}
-                        </div>
-                    </div>
-
-                    <!-- Skills Section -->
-                    ${data.sectionSettings?.skills ? '<div class="page-break"></div>' : ''}
-                    <div class="detail-infor">
-                        <div class="left">
-                            <div class="additional-section">
-                                <div class="experience-header">SKILLS</div>
-                            </div>
-                        </div>
-                        <div class="right">
-                            <div class="skill-section">
-                                ${data.skills.map(skill => `
                                     <div class="skill-item-container">
-                                        <div class="skill-item">${skill}</div>
+                                        <div class="skill-item">
+                                            TOEIC Listening & Reading
+                                        </div>
                                     </div>
-                                `).join('')}
-                            </div>
+                                </div> -->
+            </div>
+        </div>
+        <!---->
+        <div class="detail-infor">
+            <div class="left">
+                <div class="additional-section">
+                    <div class="experience-header">TOOLS</div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="skill-section">
+                    <div class="skill-item-container">
+                        <div class="skill-item">
+                            Android Studio
+                        </div>
+                    </div>
+                    <div class="skill-item-container">
+                        <div class="skill-item">
+                            VS Code
+                        </div>
+                    </div>
+                    <div class="skill-item-container">
+                        <div class="skill-item">
+                            XCode
+                        </div>
+                    </div>
+                    <div class="skill-item-container">
+                        <div class="skill-item">
+                            Figma
+                        </div>
+                    </div>
+                    <div class="skill-item-container">
+                        <div class="skill-item">
+                            Jira
+                        </div>
+                    </div>
+                    <div class="skill-item-container">
+                        <div class="skill-item">
+                            Bitrise
+                        </div>
+                    </div>
+                    <div class="skill-item-container">
+                        <div class="skill-item">
+                            fastlane
                         </div>
                     </div>
 
-                    <!-- Tools Section -->
-                    ${data.sectionSettings?.tools ? '<div class="page-break"></div>' : ''}
-                    <div class="detail-infor">
-                        <div class="left">
-                            <div class="additional-section">
-                                <div class="experience-header">TOOLS</div>
-                            </div>
-                        </div>
-                        <div class="right">
-                            <div class="skill-section">
-                                ${data.tools.map(tool => `
-                                    <div class="skill-item-container">
-                                        <div class="skill-item">${tool}</div>
-                                    </div>
-                                `).join('')}
-                            </div>
+                    <div class="skill-item-container">
+                        <div class="skill-item">
+                            GitLab
                         </div>
                     </div>
+                    <div class="skill-item-container">
+                        <div class="skill-item">
+                            Bitbucket
+                        </div>
+                    </div>
+                    <div class="skill-item-container">
+                        <div class="skill-item">
+                            GitHub
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!---->
+        <div class="detail-infor">
+            <div class="left">
+                <div class="additional-section">
+                    <div class="experience-header">LANGUAGES</div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="skill-section">
+                    <div class="skill-item-container">
+                        <div class="skill-item">
+                            Vietnamese (Native)
+                        </div>
+                    </div>
+                    <div class="skill-item-container">
+                        <div class="skill-item">English (Intermediate)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                    <!-- Languages Section -->
-                    ${data.sectionSettings?.languages ? '<div class="page-break"></div>' : ''}
-                    <div class="detail-infor">
-                        <div class="left">
-                            <div class="additional-section">
-                                <div class="experience-header">LANGUAGES</div>
-                            </div>
-                        </div>
-                        <div class="right">
-                            <div class="skill-section">
-                                ${data.languages.map(lang => `
-                                    <div class="skill-item-container">
-                                        <div class="skill-item">${lang}</div>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                    </div>
-                `;
-            } catch (error) {
-                console.error('Error loading CV data:', error);
-                document.getElementById('cv-container').innerHTML = `
-                    <div style="text-align: center; padding: 2rem; color: red;">
-                        <h2>Error loading CV data</h2>
-                        <p>Please make sure you're running this from a local server.</p>
-                        <p>Try: <code>python -m http.server 8000</code></p>
-                    </div>
-                `;
-            }
-        }
-
-        // Load CV data when page loads
-        renderCV();
+    </div>
+    <!--Calculate YoE-->
+    <script>
+        const currentYear = new Date().getFullYear();
+        const result = currentYear - 2022;
+        document.getElementById("year-difference").textContent = result;
     </script>
 </body>
 
