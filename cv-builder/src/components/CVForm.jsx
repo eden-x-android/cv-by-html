@@ -2,6 +2,33 @@ import React, { useState } from 'react';
 
 const CVForm = ({ data, onChange }) => {
     const [isUploading, setIsUploading] = useState(false);
+    const [draggedItem, setDraggedItem] = useState({ section: null, index: null });
+
+    const handleDragStart = (e, section, index) => {
+        setDraggedItem({ section, index });
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/plain', '');
+    };
+
+    const handleDragOver = (e, section) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+    };
+
+    const handleDrop = (e, section, index) => {
+        e.preventDefault();
+        if (draggedItem.section === section && draggedItem.index !== null && draggedItem.index !== index) {
+            const newArray = [...data[section]];
+            const [movedItem] = newArray.splice(draggedItem.index, 1);
+            newArray.splice(index, 0, movedItem);
+            onChange(section, null, newArray);
+        }
+        setDraggedItem({ section: null, index: null });
+    };
+
+    const handleDragEnd = () => {
+        setDraggedItem({ section: null, index: null });
+    };
 
     const handleChange = (section, field, value) => {
         onChange(section, field, value);
@@ -24,8 +51,8 @@ const CVForm = ({ data, onChange }) => {
         onChange('sectionSettings', null, newSettings);
     };
 
-    const addItem = (section, template) => {
-        const newArray = [...data[section], template];
+    const addItem = (section, template, insertAtTop = false) => {
+        const newArray = insertAtTop ? [template, ...data[section]] : [...data[section], template];
         onChange(section, null, newArray);
     };
 
@@ -129,7 +156,19 @@ const CVForm = ({ data, onChange }) => {
                 </label>
             </div>
             {data.experience.map((exp, index) => (
-                <div key={index} className="form-item">
+                <div 
+                    key={index} 
+                    className="form-item"
+                    draggable
+                    onDragStart={(e) => handleDragStart(e, 'experience', index)}
+                    onDragOver={(e) => handleDragOver(e, 'experience')}
+                    onDrop={(e) => handleDrop(e, 'experience', index)}
+                    onDragEnd={handleDragEnd}
+                    style={{ opacity: draggedItem.section === 'experience' && draggedItem.index === index ? 0.5 : 1 }}
+                >
+                    <div className="drag-handle" style={{ cursor: 'grab', marginBottom: '10px', color: '#888', textAlign: 'center', fontWeight: 'bold' }}>
+                        &#x2630; Drag to reorder
+                    </div>
                     <input type="text" placeholder="Title" value={exp.title} onChange={(e) => handleArrayChange('experience', index, 'title', e.target.value)} />
                     <input type="text" placeholder="Company" value={exp.company} onChange={(e) => handleArrayChange('experience', index, 'company', e.target.value)} />
                     <input type="text" placeholder="Date" value={exp.date} onChange={(e) => handleArrayChange('experience', index, 'date', e.target.value)} />
@@ -144,7 +183,7 @@ const CVForm = ({ data, onChange }) => {
                     </div>
                 </div>
             ))}
-            <button onClick={() => addItem('experience', { title: '', company: '', date: '', location: '', details: [] })}>Add Experience</button>
+            <button onClick={() => addItem('experience', { title: '', company: '', date: '', location: '', details: [] }, true)}>Add Experience</button>
 
             <div className="section-header">
                 <h2>Projects</h2>
@@ -158,7 +197,19 @@ const CVForm = ({ data, onChange }) => {
                 </label>
             </div>
             {data.projects.map((project, index) => (
-                <div key={index} className="form-item">
+                <div 
+                    key={index} 
+                    className="form-item"
+                    draggable
+                    onDragStart={(e) => handleDragStart(e, 'projects', index)}
+                    onDragOver={(e) => handleDragOver(e, 'projects')}
+                    onDrop={(e) => handleDrop(e, 'projects', index)}
+                    onDragEnd={handleDragEnd}
+                    style={{ opacity: draggedItem.section === 'projects' && draggedItem.index === index ? 0.5 : 1 }}
+                >
+                    <div className="drag-handle" style={{ cursor: 'grab', marginBottom: '10px', color: '#888', textAlign: 'center', fontWeight: 'bold' }}>
+                        &#x2630; Drag to reorder
+                    </div>
                     <input type="text" placeholder="Project Name" value={project.name} onChange={(e) => handleArrayChange('projects', index, 'name', e.target.value)} />
                     <textarea placeholder="Details (one per line)" value={project.details.join('\n')} onChange={(e) => handleArrayChange('projects', index, 'details', e.target.value.split('\n'))} />
                     <div className="item-options">
@@ -184,7 +235,19 @@ const CVForm = ({ data, onChange }) => {
                 </label>
             </div>
             {data.education.map((edu, index) => (
-                <div key={index} className="form-item">
+                <div 
+                    key={index} 
+                    className="form-item"
+                    draggable
+                    onDragStart={(e) => handleDragStart(e, 'education', index)}
+                    onDragOver={(e) => handleDragOver(e, 'education')}
+                    onDrop={(e) => handleDrop(e, 'education', index)}
+                    onDragEnd={handleDragEnd}
+                    style={{ opacity: draggedItem.section === 'education' && draggedItem.index === index ? 0.5 : 1 }}
+                >
+                    <div className="drag-handle" style={{ cursor: 'grab', marginBottom: '10px', color: '#888', textAlign: 'center', fontWeight: 'bold' }}>
+                        &#x2630; Drag to reorder
+                    </div>
                     <input type="text" placeholder="School" value={edu.school} onChange={(e) => handleArrayChange('education', index, 'school', e.target.value)} />
                     <input type="text" placeholder="Date" value={edu.date} onChange={(e) => handleArrayChange('education', index, 'date', e.target.value)} />
                     <input type="text" placeholder="Location" value={edu.location} onChange={(e) => handleArrayChange('education', index, 'location', e.target.value)} />
@@ -212,7 +275,17 @@ const CVForm = ({ data, onChange }) => {
                 </label>
             </div>
             {data.skills.map((skill, index) => (
-                <div key={index} className="form-item-inline">
+                <div 
+                    key={index} 
+                    className="form-item-inline"
+                    draggable
+                    onDragStart={(e) => handleDragStart(e, 'skills', index)}
+                    onDragOver={(e) => handleDragOver(e, 'skills')}
+                    onDrop={(e) => handleDrop(e, 'skills', index)}
+                    onDragEnd={handleDragEnd}
+                    style={{ opacity: draggedItem.section === 'skills' && draggedItem.index === index ? 0.5 : 1 }}
+                >
+                    <span style={{ cursor: 'grab', marginRight: '5px', color: '#888' }}>&#x2630;</span>
                     <input type="text" value={skill} onChange={(e) => handleSimpleArrayChange('skills', index, e.target.value)} />
                     <button onClick={() => removeItem('skills', index)}>X</button>
                 </div>
@@ -231,7 +304,17 @@ const CVForm = ({ data, onChange }) => {
                 </label>
             </div>
             {data.tools.map((tool, index) => (
-                <div key={index} className="form-item-inline">
+                <div 
+                    key={index} 
+                    className="form-item-inline"
+                    draggable
+                    onDragStart={(e) => handleDragStart(e, 'tools', index)}
+                    onDragOver={(e) => handleDragOver(e, 'tools')}
+                    onDrop={(e) => handleDrop(e, 'tools', index)}
+                    onDragEnd={handleDragEnd}
+                    style={{ opacity: draggedItem.section === 'tools' && draggedItem.index === index ? 0.5 : 1 }}
+                >
+                    <span style={{ cursor: 'grab', marginRight: '5px', color: '#888' }}>&#x2630;</span>
                     <input type="text" value={tool} onChange={(e) => handleSimpleArrayChange('tools', index, e.target.value)} />
                     <button onClick={() => removeItem('tools', index)}>X</button>
                 </div>
@@ -250,7 +333,17 @@ const CVForm = ({ data, onChange }) => {
                 </label>
             </div>
             {data.languages.map((lang, index) => (
-                <div key={index} className="form-item-inline">
+                <div 
+                    key={index} 
+                    className="form-item-inline"
+                    draggable
+                    onDragStart={(e) => handleDragStart(e, 'languages', index)}
+                    onDragOver={(e) => handleDragOver(e, 'languages')}
+                    onDrop={(e) => handleDrop(e, 'languages', index)}
+                    onDragEnd={handleDragEnd}
+                    style={{ opacity: draggedItem.section === 'languages' && draggedItem.index === index ? 0.5 : 1 }}
+                >
+                    <span style={{ cursor: 'grab', marginRight: '5px', color: '#888' }}>&#x2630;</span>
                     <input type="text" value={lang} onChange={(e) => handleSimpleArrayChange('languages', index, e.target.value)} />
                     <button onClick={() => removeItem('languages', index)}>X</button>
                 </div>

@@ -78,6 +78,29 @@ Open your browser and navigate to `http://localhost:5173`.
 -   `cv-builder/src/App.css`: Styles for the application UI.
 -   `cv-builder/vite.config.js`: Vite configuration, including the custom avatar upload middleware.
 
+## Troubleshooting
+
+### Firebase Deployment Issues
+
+#### Error: Cannot find module 'vite' (During `firebase init`)
+**Cause:** Firebase CLI attempts to auto-detect Vite but the `node_modules` directory is missing.
+**Solution:** Ensure you install dependencies before initializing Firebase:
+```bash
+npm install
+firebase init
+```
+
+#### HTTP Error: 500, Internal error encountered (During `firebase deploy`)
+**Cause:** This is an internal error on Google's Firebase servers, not an error with your code.
+**Solution:** 
+1. **Wait and Retry:** Often, this is a temporary hiccup. Wait a few minutes and run `firebase deploy` again.
+2. **Accept Terms:** If this is a new Firebase project, open the [Firebase Console](https://console.firebase.google.com/), select your project, and check if you need to accept any Terms of Service.
+3. **Re-authenticate:** Refresh your CLI access tokens by running:
+   ```bash
+   firebase logout
+   firebase login
+   ```
+
 ## License
 
 [MIT](LICENSE)
