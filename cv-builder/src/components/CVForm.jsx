@@ -221,7 +221,7 @@ const CVForm = ({ data, onChange }) => {
                     </div>
                 </div>
             ))}
-            <button onClick={() => addItem('projects', { name: '', details: [] })}>Add Project</button>
+            <button onClick={() => addItem('projects', { name: '', details: [] }, true)}>Add Project</button>
 
             <div className="section-header">
                 <h2>Education</h2>
