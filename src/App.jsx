@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import CVForm from './components/CVForm';
 import CVPreview from './components/CVPreview';
 import './App.css';
@@ -152,11 +152,60 @@ function App() {
         window.print();
     };
 
+    const importInputRef = useRef(null);
+
+    const handleExport = () => {
+        const json = JSON.stringify(cvData, null, 2);
+        const blob = new Blob([json], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        const name = cvData.personalInfo?.name?.replace(/\s+/g, '_') || 'cv';
+        const now = new Date();
+        const pad = (n, len = 2) => String(n).padStart(len, '0');
+        const timestamp = `${pad(now.getDate())}-${pad(now.getMonth() + 1)}-${now.getFullYear()}_${pad(now.getHours())}-${pad(now.getMinutes())}-${pad(now.getSeconds())}-${pad(now.getMilliseconds(), 3)}`;
+        a.href = url;
+        a.download = `${name}_${timestamp}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+    };
+
+    const handleImport = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            try {
+                const imported = JSON.parse(event.target.result);
+                if (!imported.personalInfo) {
+                    alert('Invalid CV JSON file.');
+                    return;
+                }
+                setCvData(imported);
+            } catch (err) {
+                alert('Failed to parse JSON file: ' + err.message);
+            }
+        };
+        reader.readAsText(file);
+        // Reset so the same file can be re-imported
+        e.target.value = '';
+    };
+
     return (
         <div className="app-container">
             <div className="no-print form-container">
                 <h1>CV Builder</h1>
-                <button onClick={handlePrint} className="print-button">Print / Save as PDF</button>
+                <div className="toolbar">
+                    <button onClick={handlePrint} className="print-button">🖨️ Print / Save as PDF</button>
+                    <button onClick={handleExport} className="export-button">⬇️ Export JSON</button>
+                    <button onClick={() => importInputRef.current.click()} className="import-button">⬆️ Import JSON</button>
+                    <input
+                        ref={importInputRef}
+                        type="file"
+                        accept=".json,application/json"
+                        style={{ display: 'none' }}
+                        onChange={handleImport}
+                    />
+                </div>
                 <CVForm data={cvData} onChange={handleDataChange} />
             </div>
             <div className="preview-container">

@@ -173,17 +173,55 @@
     cursor: pointer;
 }
 
+.toolbar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.toolbar button {
+    flex: 1;
+    min-width: 100px;
+    padding: 10px 12px !important;
+    font-size: 0.9rem;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    margin-bottom: 0 !important;
+}
+
+.toolbar button:active {
+    transform: scale(0.97);
+}
+
 .print-button {
     background-color: #28a745 !important;
-    font-size: 1.1rem;
-    width: 100%;
-    margin-bottom: 2rem;
-    padding: 12px !important;
-    font-weight: 600 !important;
+    color: white !important;
 }
 
 .print-button:hover {
     background-color: #218838 !important;
+}
+
+.export-button {
+    background-color: #0d6efd !important;
+    color: white !important;
+}
+
+.export-button:hover {
+    background-color: #0b5ed7 !important;
+}
+
+.import-button {
+    background-color: #fd7e14 !important;
+    color: white !important;
+}
+
+.import-button:hover {
+    background-color: #e36a09 !important;
 }
 
 /* Responsive Layout */
