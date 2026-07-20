@@ -11,6 +11,13 @@ const CVPreview = ({ data }) => {
                     <div className="name-flex">
                         <h1>{personalInfo.name}</h1>
                         <div className="job-title">{personalInfo.jobTitle}</div>
+                        {personalInfo.address && (
+                            <div className="contact-info">
+                                <a className="contact-info-item">
+                                    <span>{personalInfo.address}</span>
+                                </a>
+                            </div>
+                        )}
                         <div className="contact-info">
                             {personalInfo.email && (
                                 <a href={`mailto:${personalInfo.email}`} className="contact-info-item">
@@ -25,16 +32,6 @@ const CVPreview = ({ data }) => {
                             {personalInfo.phone && (
                                 <a href={`tel:${personalInfo.phone}`} className="contact-info-item">
                                     <span>{personalInfo.phone}</span>
-                                </a>
-                            )}
-                            {(personalInfo.email || personalInfo.phone) && personalInfo.address && (
-                                <a className="contact-info-item">
-                                    <span> | </span>
-                                </a>
-                            )}
-                            {personalInfo.address && (
-                                <a className="contact-info-item">
-                                    <span>{personalInfo.address}</span>
                                 </a>
                             )}
                         </div>
@@ -76,13 +73,13 @@ const CVPreview = ({ data }) => {
                             {socials.linkedin && (
                                 <a href={socials.linkedin} className="contact-info-item-vertical-align">
                                     <img src="/images/ic_linkedin.svg" alt="LinkedIn" />
-                                    <span>{socials.linkedin.replace('https://', '')}</span>
+                                    <span>{socials.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</span>
                                 </a>
                             )}
                             {socials.github && (
                                 <a href={socials.github} className="contact-info-item-vertical-align">
                                     <img src="/images/ic_github.svg" alt="GitHub" />
-                                    <span>{socials.github.replace('https://', '')}</span>
+                                    <span>{socials.github.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</span>
                                 </a>
                             )}
                         </div>
