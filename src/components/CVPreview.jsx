@@ -87,6 +87,42 @@ const CVPreview = ({ data }) => {
                 </div>
             </div>
 
+            {sectionSettings?.skills && <div className="page-break"></div>}
+            <div className="detail-infor">
+                <div className="left">
+                    <div className="additional-section">
+                        <div className="experience-header">SKILLS</div>
+                    </div>
+                </div>
+                <div className="right">
+                    <div className="skill-section">
+                        {skills.map((skill, index) => (
+                            <div className="skill-item-container" key={index}>
+                                <div className="skill-item">{skill}</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {sectionSettings?.tools && <div className="page-break"></div>}
+            <div className="detail-infor">
+                <div className="left">
+                    <div className="additional-section">
+                        <div className="experience-header">TOOLS</div>
+                    </div>
+                </div>
+                <div className="right">
+                    <div className="skill-section">
+                        {tools.map((tool, index) => (
+                            <div className="skill-item-container" key={index}>
+                                <div className="skill-item">{tool}</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
             {sectionSettings?.experience && <div className="page-break"></div>}
             <div className="detail-infor">
                 <div className="left">
@@ -162,42 +198,6 @@ const CVPreview = ({ data }) => {
                     ))}
                     {/* Education items usually don't need internal page breaks, but if added: */}
                     {education.map((edu, index) => edu.pageBreakAfter && <div key={`pb-${index}`} className="page-break"></div>)}
-                </div>
-            </div>
-
-            {sectionSettings?.skills && <div className="page-break"></div>}
-            <div className="detail-infor">
-                <div className="left">
-                    <div className="additional-section">
-                        <div className="experience-header">SKILLS</div>
-                    </div>
-                </div>
-                <div className="right">
-                    <div className="skill-section">
-                        {skills.map((skill, index) => (
-                            <div className="skill-item-container" key={index}>
-                                <div className="skill-item">{skill}</div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-
-            {sectionSettings?.tools && <div className="page-break"></div>}
-            <div className="detail-infor">
-                <div className="left">
-                    <div className="additional-section">
-                        <div className="experience-header">TOOLS</div>
-                    </div>
-                </div>
-                <div className="right">
-                    <div className="skill-section">
-                        {tools.map((tool, index) => (
-                            <div className="skill-item-container" key={index}>
-                                <div className="skill-item">{tool}</div>
-                            </div>
-                        ))}
-                    </div>
                 </div>
             </div>
 
