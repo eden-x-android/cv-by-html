@@ -1,11 +1,12 @@
 import React from 'react';
 import '../CVPreview.css';
 
-const CVPreview = ({ data }) => {
+const CVPreview = ({ data, template = 'columns' }) => {
     const { personalInfo, summary, socials, experience, projects, education, skills, tools, languages, sectionSettings } = data;
+    const isStacked = template === 'stacked';
 
     return (
-        <div className="container cv-page">
+        <div className={`container cv-page ${isStacked ? 'layout-stacked' : 'layout-columns'}`}>
             <div className="personal-infor">
                 <div className="name-and-image">
                     <div className="name-flex">
@@ -18,23 +19,25 @@ const CVPreview = ({ data }) => {
                                 </a>
                             </div>
                         )}
-                        <div className="contact-info">
-                            {personalInfo.email && (
-                                <a href={`mailto:${personalInfo.email}`} className="contact-info-item">
-                                    <span>{personalInfo.email}</span>
-                                </a>
-                            )}
-                            {personalInfo.email && personalInfo.phone && (
-                                <a className="contact-info-item">
-                                    <span> | </span>
-                                </a>
-                            )}
-                            {personalInfo.phone && (
-                                <a href={`tel:${personalInfo.phone}`} className="contact-info-item">
-                                    <span>{personalInfo.phone}</span>
-                                </a>
-                            )}
-                        </div>
+                        {!isStacked && (
+                            <div className="contact-info">
+                                {personalInfo.email && (
+                                    <a href={`mailto:${personalInfo.email}`} className="contact-info-item">
+                                        <span>{personalInfo.email}</span>
+                                    </a>
+                                )}
+                                {personalInfo.email && personalInfo.phone && (
+                                    <a className="contact-info-item">
+                                        <span> | </span>
+                                    </a>
+                                )}
+                                {personalInfo.phone && (
+                                    <a href={`tel:${personalInfo.phone}`} className="contact-info-item">
+                                        <span>{personalInfo.phone}</span>
+                                    </a>
+                                )}
+                            </div>
+                        )}
                     </div>
                     {personalInfo.avatar && (
                         <div className="image-flex">
@@ -69,11 +72,24 @@ const CVPreview = ({ data }) => {
                             </div>
                         </div>
 
-                        <div className="contact-info-vertical-align">
+                        <div className={`contact-info-vertical-align ${isStacked ? 'contact-grid' : ''}`}>
+                            {/* Stacked grid fills row by row: phone | linkedin, email | github */}
+                            {isStacked && personalInfo.phone && (
+                                <a href={`tel:${personalInfo.phone}`} className="contact-info-item-vertical-align">
+                                    <img src="/images/ic_phone.svg" alt="Phone" />
+                                    <span>{personalInfo.phone}</span>
+                                </a>
+                            )}
                             {socials.linkedin && (
                                 <a href={socials.linkedin} className="contact-info-item-vertical-align">
                                     <img src="/images/ic_linkedin.svg" alt="LinkedIn" />
                                     <span>{socials.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</span>
+                                </a>
+                            )}
+                            {isStacked && personalInfo.email && (
+                                <a href={`mailto:${personalInfo.email}`} className="contact-info-item-vertical-align">
+                                    <img src="/images/ic_mail.svg" alt="Email" />
+                                    <span>{personalInfo.email}</span>
                                 </a>
                             )}
                             {socials.github && (
