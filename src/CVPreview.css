@@ -68,7 +68,7 @@
 
 .cv-page .job-title {
     color: var(--semi-black);
-    font-family: 'WorkSans', monospace;
+    font-family: 'WorkSans', sans-serif;
     font-size: 1.22rem;
     font-weight: 600;
     margin-bottom: 0.67rem;
@@ -77,13 +77,13 @@
 .cv-page .contact-info {
     display: flex;
     flex-wrap: wrap;
-    font-family: 'WorkSans', monospace;
+    font-family: 'WorkSans', sans-serif;
     font-weight: 400;
     font-size: 1rem;
 }
 
 .cv-page .contact-info-vertical-align {
-    font-family: 'WorkSans', monospace;
+    font-family: 'WorkSans', sans-serif;
     font-weight: 400;
     font-size: 1rem;
 }
@@ -125,7 +125,7 @@
 }
 
 .cv-page .date {
-    font-family: 'WorkSans', monospace;
+    font-family: 'WorkSans', sans-serif;
     font-size: 1rem;
     margin-bottom: 0.67rem;
     color: var(--semi-black-60);
@@ -251,7 +251,7 @@
     color: var(--semi-black);
     align-items: center;
     padding: 0.22rem 0.44rem;
-    font-family: 'WorkSans', monospace;
+    font-family: 'WorkSans', sans-serif;
     font-size: 0.857rem;
     margin: auto;
 }
@@ -290,6 +290,33 @@
 
 .cv-page .extra-vertical-spacing {
     margin-bottom: 2.22rem;
+}
+
+/* Stacked layout: section header above its content, contacts in a 2x2 grid */
+.cv-page.layout-stacked .detail-infor {
+    flex-direction: column;
+    gap: 0;
+}
+
+.cv-page.layout-stacked .left,
+.cv-page.layout-stacked .right {
+    flex: none;
+    width: 100%;
+}
+
+.cv-page.layout-stacked .left .additional-section {
+    margin-bottom: 0.67rem;
+}
+
+.cv-page.layout-stacked .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 0.67rem;
+    column-gap: 2rem;
+}
+
+.cv-page.layout-stacked .contact-grid .contact-info-item-vertical-align {
+    margin: 0;
 }
 
 @media print {

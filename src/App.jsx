@@ -123,6 +123,7 @@ function App() {
         languages: [
             'Vietnamese (Native)', 'English (Intermediate)'
         ],
+        template: 'stacked',
         sectionSettings: {
             experience: false,
             projects: false,
@@ -190,6 +191,13 @@ function App() {
         e.target.value = '';
     };
 
+    // JSON files exported before templates existed have no `template` field
+    const template = cvData.template ?? 'columns';
+
+    const handleTemplateChange = (e) => {
+        handleDataChange('template', null, e.target.value);
+    };
+
     return (
         <div className="app-container">
             <div className="no-print form-container">
@@ -206,10 +214,17 @@ function App() {
                         onChange={handleImport}
                     />
                 </div>
+                <label className="template-picker">
+                    Template
+                    <select value={template} onChange={handleTemplateChange}>
+                        <option value="columns">Classic – 2 columns</option>
+                        <option value="stacked">Stacked</option>
+                    </select>
+                </label>
                 <CVForm data={cvData} onChange={handleDataChange} />
             </div>
             <div className="preview-container">
-                <CVPreview data={cvData} />
+                <CVPreview data={cvData} template={template} />
             </div>
         </div>
     );
