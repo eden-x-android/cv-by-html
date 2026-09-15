@@ -2,7 +2,7 @@
 
 @page {
     size: A4;
-    margin: 56px 0;
+    margin: 54px 0;
 }
 
 
@@ -10,6 +10,7 @@
 .cv-page {
     box-sizing: border-box;
     font-family: 'WorkSans', sans-serif;
+    font-size: 1.11rem;
     line-height: 1.2;
     color: var(--light-black);
     /* background-color: var(--semi-black); */
@@ -21,7 +22,7 @@
     width: 210mm;
     min-height: 297mm;
     margin: 0 auto;
-    padding: 0 4rem 2rem;
+    padding: 0 4.44rem 2.22rem;
     background-color: white;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
@@ -55,22 +56,22 @@
 
 .cv-page h1 {
     font-family: 'BergenText', sans-serif;
-    font-size: 3.2rem;
+    font-size: 3.55rem;
     color: var(--blue);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.56rem;
 }
 
 .cv-page .personal-infor {
     color: var(--semi-black);
-    margin-bottom: 1rem;
+    margin-bottom: 2.5rem;
 }
 
 .cv-page .job-title {
     color: var(--semi-black);
     font-family: 'WorkSans', monospace;
-    font-size: 1.1rem;
+    font-size: 1.22rem;
     font-weight: 600;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.67rem;
 }
 
 .cv-page .contact-info {
@@ -78,20 +79,20 @@
     flex-wrap: wrap;
     font-family: 'WorkSans', monospace;
     font-weight: 400;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .cv-page .contact-info-vertical-align {
     font-family: 'WorkSans', monospace;
     font-weight: 400;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .cv-page a.contact-info-item {
     display: flex;
     align-items: center;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-right: 0.56rem;
+    margin-bottom: 0.56rem;
     text-decoration: none;
     color: var(--semi-black);
 }
@@ -99,34 +100,34 @@
 .cv-page a.contact-info-item-vertical-align {
     display: flex;
     align-items: center;
-    margin-right: 1.8rem;
-    margin-top: 0.8rem;
+    margin-right: 2rem;
+    margin-top: 0.89rem;
     text-decoration: none;
     color: var(--semi-black);
 }
 
 .cv-page .contact-info-item img {
-    width: 1.1rem;
-    height: 1.1rem;
-    margin-right: 0.5rem;
+    width: 1.22rem;
+    height: 1.22rem;
+    margin-right: 0.56rem;
 }
 
 .cv-page .contact-info-item-vertical-align img {
-    width: 1.1rem;
-    height: 1.1rem;
-    margin-right: 0.5rem;
+    width: 1.22rem;
+    height: 1.22rem;
+    margin-right: 0.56rem;
 }
 
 .cv-page .detail-infor {
-    margin-top: 2.5rem;
+    margin-top: 2rem;
     display: flex;
     gap: 5%;
 }
 
 .cv-page .date {
     font-family: 'WorkSans', monospace;
-    font-size: 0.9rem;
-    margin-bottom: 0.6rem;
+    font-size: 1rem;
+    margin-bottom: 0.67rem;
     color: var(--semi-black-60);
     font-weight: 500;
 }
@@ -141,7 +142,7 @@
 
 .cv-page .experience-header,
 .cv-page .additional-header {
-    font-size: 1.2rem;
+    font-size: 1.33rem;
     color: var(--blue);
     text-transform: uppercase;
     font-weight: 700;
@@ -150,13 +151,13 @@
 }
 
 .cv-page .experience-item {
-    margin-bottom: 1.1rem;
+    margin-bottom: 1.22rem;
 }
 
 .cv-page .company-title,
 .cv-page .additional-title {
     font-weight: bold;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.33rem;
     color: var(--semi-black);
     font-family: 'WorkSans', sans-serif;
 }
@@ -169,13 +170,13 @@
 .cv-page ul {
     list-style: none;
     margin-left: 0;
-    padding-left: 1rem;
+    padding-left: 1.11rem;
 }
 
 .cv-page ul.experience-item-details li {
-    padding-left: 1.5rem;
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
+    padding-left: 1.67rem;
+    font-size: 1rem;
+    margin-bottom: 0.56rem;
     line-height: var(--line-height);
     position: relative;
     list-style: none;
@@ -185,38 +186,38 @@
     content: "";
     position: absolute;
     left: 0;
-    top: 4px;
-    width: 10px;
-    height: 10px;
+    top: 3.9px;
+    width: 9.7px;
+    height: 9.7px;
     background-color: var(--geyser);
-    border-radius: 3px;
+    border-radius: 2.9px;
     display: inline-block;
 }
 
 .cv-page .additional-section {
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.33rem;
 }
 
 .cv-page .additional-item {
-    margin-bottom: 1.1rem;
+    margin-bottom: 1.22rem;
 }
 
 .cv-page .additional-detail {
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-family: 'WorkSans', sans-serif;
     line-height: var(--line-height);
 }
 
 .cv-page .project-title {
     font-weight: bold;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.67rem;
     color: var(--semi-black);
     font-family: 'WorkSans', sans-serif;
 }
 
 .cv-page a.url-in-text {
     color: var(--semi-black);
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-family: 'WorkSans', sans-serif;
     text-decoration: underline;
     text-decoration-color: var(--semi-black-10);
@@ -227,7 +228,7 @@
 
 .cv-page .text-along-with-url {
     color: var(--semi-black);
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-family: 'WorkSans', sans-serif;
     text-decoration: none;
 }
@@ -235,34 +236,34 @@
 .cv-page .skill-section {
     display: flex;
     flex-wrap: wrap;
-    row-gap: 0.7rem;
-    margin-bottom: 1.1rem;
+    row-gap: 0.78rem;
+    margin-bottom: 1.22rem;
 }
 
 .cv-page .skill-item-container {
-    margin-right: 0.8rem;
+    margin-right: 0.89rem;
 }
 
 .cv-page .skill-item {
-    border-radius: 6px;
+    border-radius: 5.8px;
     text-align: center;
     background-color: var(--catskill-white);
     color: var(--semi-black);
     align-items: center;
-    padding: 0.2rem 0.4rem;
+    padding: 0.22rem 0.44rem;
     font-family: 'WorkSans', monospace;
-    font-size: 0.9rem;
+    font-size: 0.857rem;
     margin: auto;
 }
 
 .cv-page .skill-item img {
-    width: 1.1rem;
-    height: 1.1rem;
-    margin-right: 0.2rem;
+    width: 1.22rem;
+    height: 1.22rem;
+    margin-right: 0.22rem;
 }
 
 .cv-page .name-and-image {
-    margin-top: 1rem;
+    margin-top: 1.11rem;
     display: flex;
     gap: 5%;
 }
@@ -279,16 +280,16 @@
 
 .cv-page .avatar {
     border-radius: 50%;
-    width: 8rem;
-    height: 8rem;
+    width: 8.89rem;
+    height: 8.89rem;
     object-fit: cover;
     float: right;
-    padding: 0.3rem;
-    border: 0.2rem solid var(--blue);
+    padding: 0.33rem;
+    border: 0.22rem solid var(--blue);
 }
 
 .cv-page .extra-vertical-spacing {
-    margin-bottom: 2rem;
+    margin-bottom: 2.22rem;
 }
 
 @media print {
@@ -308,7 +309,7 @@
         max-width: none;
         box-shadow: none;
         margin: 0;
-        padding: 0 4rem 2rem;
+        padding: 0 4.44rem 2.22rem;
         /* Keep original padding */
     }
 }
