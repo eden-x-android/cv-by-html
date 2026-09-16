@@ -86,7 +86,7 @@ function App() {
                 details: [
                     'An simple tool to create typography on your image.',
                     'Technologies used include Jetpack Compose, Google Admob, Room database, Kotlin Flows and Hilt.',
-                    '<p class="text-along-with-url">Google Play: <a href="https://play.google.com/store/apps/details?id=io.edenx.qikfont" class="url-in-text">https://play.google.com/store/apps/details?id=io.edenx.qikfont</a></p>'
+                    'Google Play: [play.google.com/store/apps/details?id=io.edenx.qikfont](https://play.google.com/store/apps/details?id=io.edenx.qikfont)'
                 ]
             },
             {
@@ -94,7 +94,7 @@ function App() {
                 details: [
                     'A mini game to challenge how fast your fingers are.',
                     'Made with Android views, Google Admob.',
-                    '<p class="text-along-with-url">Google Play: <a href="https://play.google.com/store/apps/details?id=io.edenxwhistle.fingerchallenge" class="url-in-text">https://play.google.com/store/apps/details?id=io.edenxwhistle.fingerchallenge</a></p>'
+                    'Google Play: [play.google.com/store/apps/details?id=io.edenxwhistle.fingerchallenge](https://play.google.com/store/apps/details?id=io.edenxwhistle.fingerchallenge)'
                 ]
             },
             {
@@ -102,7 +102,7 @@ function App() {
                 details: [
                     'A simple tool to create an colorful background for image.',
                     'The app was built with Jetpack Compose, Google Admob.',
-                    '<p class="text-along-with-url">Google Play: <a href="https://play.google.com/store/apps/details?id=io.edenxwhistle.betterscreenshot" class="url-in-text">https://play.google.com/store/apps/details?id=io.edenxwhistle.betterscreenshot</a></p>'
+                    'Google Play: [play.google.com/store/apps/details?id=io.edenxwhistle.betterscreenshot](https://play.google.com/store/apps/details?id=io.edenxwhistle.betterscreenshot)'
                 ]
             }
         ],

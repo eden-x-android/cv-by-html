@@ -1,0 +1,58 @@
+/* Textarea with a link toolbar (used inside .cv-form) */
+
+.linkable-textarea {
+    margin-bottom: 12px;
+}
+
+.linkable-textarea textarea {
+    margin-bottom: 0;
+}
+
+.linkable-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 6px;
+}
+
+.cv-form .linkable-toolbar .link-button {
+    margin: 0;
+    padding: 4px 10px;
+    background-color: var(--catskill-white);
+    color: var(--semi-black);
+    font-size: 0.8rem;
+}
+
+.cv-form .linkable-toolbar .link-button:hover {
+    background-color: var(--geyser);
+}
+
+.linkable-hint {
+    font-size: 0.8rem;
+    color: var(--slate-gray);
+}
+
+.link-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    padding: 8px;
+    border: 1px solid var(--geyser);
+    border-radius: 6px;
+    background-color: var(--catskill-white);
+}
+
+.cv-form .link-box input {
+    flex: 1;
+    margin: 0;
+}
+
+.cv-form .link-box button {
+    margin: 0;
+    padding: 8px 14px;
+}
+
+.cv-form .link-box .link-box-cancel {
+    background-color: var(--slate-gray);
+}
