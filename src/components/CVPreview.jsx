@@ -1,5 +1,6 @@
 import React from 'react';
 import '../CVPreview.css';
+import parseRichText from '../utils/parseRichText';
 
 const CVPreview = ({ data, template = 'columns' }) => {
     const { personalInfo, summary, socials, experience, projects, education, skills, tools, languages, sectionSettings } = data;
@@ -68,7 +69,7 @@ const CVPreview = ({ data, template = 'columns' }) => {
                     <div className="additional-section">
                         <div className="additional-item">
                             <div className="additional-detail">
-                                <p>{summary}</p>
+                                <p>{parseRichText(summary)}</p>
                             </div>
                         </div>
 
@@ -158,7 +159,7 @@ const CVPreview = ({ data, template = 'columns' }) => {
                                     <p className="date">{exp.date} // {exp.location}</p>
                                     <ul className="experience-item-details">
                                         {exp.details.map((detail, i) => (
-                                            <li key={i}>{detail}</li>
+                                            <li key={i}>{parseRichText(detail)}</li>
                                         ))}
                                     </ul>
                                 </div>
@@ -185,7 +186,7 @@ const CVPreview = ({ data, template = 'columns' }) => {
                                     <div className="project-title">{project.name}</div>
                                     <ul className="experience-item-details">
                                         {project.details.map((detail, i) => (
-                                            <li key={i} dangerouslySetInnerHTML={{ __html: detail }}></li>
+                                            <li key={i}>{parseRichText(detail)}</li>
                                         ))}
                                     </ul>
                                 </div>

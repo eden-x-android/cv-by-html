@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import LinkableTextarea from './LinkableTextarea';
 
 const CVForm = ({ data, onChange }) => {
     const [isUploading, setIsUploading] = useState(false);
@@ -138,7 +139,7 @@ const CVForm = ({ data, onChange }) => {
             </div>
 
             <h2>Summary</h2>
-            <textarea placeholder="Summary" value={data.summary} onChange={(e) => onChange('summary', null, e.target.value)} />
+            <LinkableTextarea placeholder="Summary" value={data.summary} onChange={(value) => onChange('summary', null, value)} />
 
             <h2>Socials</h2>
             <input type="text" placeholder="LinkedIn URL" value={data.socials.linkedin} onChange={(e) => handleChange('socials', 'linkedin', e.target.value)} />
@@ -173,7 +174,7 @@ const CVForm = ({ data, onChange }) => {
                     <input type="text" placeholder="Company" value={exp.company} onChange={(e) => handleArrayChange('experience', index, 'company', e.target.value)} />
                     <input type="text" placeholder="Date" value={exp.date} onChange={(e) => handleArrayChange('experience', index, 'date', e.target.value)} />
                     <input type="text" placeholder="Location" value={exp.location} onChange={(e) => handleArrayChange('experience', index, 'location', e.target.value)} />
-                    <textarea placeholder="Details (one per line)" value={exp.details.join('\n')} onChange={(e) => handleArrayChange('experience', index, 'details', e.target.value.split('\n'))} />
+                    <LinkableTextarea placeholder="Details (one per line)" value={exp.details.join('\n')} onChange={(value) => handleArrayChange('experience', index, 'details', value.split('\n'))} />
                     <div className="item-options">
                         <label>
                             <input type="checkbox" checked={exp.pageBreakAfter || false} onChange={(e) => handleArrayChange('experience', index, 'pageBreakAfter', e.target.checked)} />
@@ -211,7 +212,7 @@ const CVForm = ({ data, onChange }) => {
                         &#x2630; Drag to reorder
                     </div>
                     <input type="text" placeholder="Project Name" value={project.name} onChange={(e) => handleArrayChange('projects', index, 'name', e.target.value)} />
-                    <textarea placeholder="Details (one per line)" value={project.details.join('\n')} onChange={(e) => handleArrayChange('projects', index, 'details', e.target.value.split('\n'))} />
+                    <LinkableTextarea placeholder="Details (one per line)" value={project.details.join('\n')} onChange={(value) => handleArrayChange('projects', index, 'details', value.split('\n'))} />
                     <div className="item-options">
                         <label>
                             <input type="checkbox" checked={project.pageBreakAfter || false} onChange={(e) => handleArrayChange('projects', index, 'pageBreakAfter', e.target.checked)} />
