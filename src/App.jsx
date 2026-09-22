@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import CVForm from './components/CVForm';
 import CVPreview from './components/CVPreview';
+import ThemeToggle from './components/ThemeToggle';
 import './App.css';
 
 function App() {
@@ -203,9 +204,25 @@ function App() {
             <div className="no-print form-container">
                 <h1>CV Builder</h1>
                 <div className="toolbar">
-                    <button onClick={handlePrint} className="print-button">🖨️ Print / Save as PDF</button>
-                    <button onClick={handleExport} className="export-button">⬇️ Export JSON</button>
-                    <button onClick={() => importInputRef.current.click()} className="import-button">⬆️ Import JSON</button>
+                    <button
+                        onClick={handlePrint}
+                        className="toolbar-button print-button"
+                        aria-label="Print / Save as PDF"
+                        data-tooltip="Print / Save as PDF"
+                    >🖨️</button>
+                    <button
+                        onClick={handleExport}
+                        className="toolbar-button export-button"
+                        aria-label="Export JSON"
+                        data-tooltip="Export JSON"
+                    >⬇️</button>
+                    <button
+                        onClick={() => importInputRef.current.click()}
+                        className="toolbar-button import-button"
+                        aria-label="Import JSON"
+                        data-tooltip="Import JSON"
+                    >⬆️</button>
+                    <ThemeToggle />
                     <input
                         ref={importInputRef}
                         type="file"

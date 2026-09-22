@@ -1,0 +1,7 @@
+/* Theme toggle — shares .toolbar-button geometry, sits at the end of the toolbar */
+
+.theme-button {
+    margin-left: auto;
+    background-color: var(--bg);
+    color: var(--text);
+}

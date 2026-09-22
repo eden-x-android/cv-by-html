@@ -1,43 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* Builder shell: split panes, sticky toolbar, template picker.
+   Form controls live in components/CVForm.css. */
 
 .app-container {
     display: flex;
     min-height: 100vh;
-    font-family: 'Inter', sans-serif;
-    color: #333;
+    font-family: var(--font-ui);
+    color: var(--text);
 }
 
 .form-container {
     width: 40%;
-    padding: 2rem;
-    background-color: #f8f9fa;
+    /* Scoped, not a global reset: .cv-page relies on content-box with a
+       210mm width, so a global border-box would shrink the printed CV. */
+    box-sizing: border-box;
+    /* No padding-top: sticky `top: 0` pins to the content box, so any top
+       padding here becomes a gap above the toolbar that content scrolls
+       through. The spacing lives on the h1 instead. */
+    padding: 0 2rem 2rem;
+    background-color: var(--bg-alt);
     overflow-y: auto;
     height: 100vh;
-    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.05);
+    border-right: var(--nb-border-thick) solid var(--border);
     z-index: 10;
 }
 
 .form-container h1 {
+    display: inline-block;
+    margin: 2rem 0 1.5rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--accent);
+    color: var(--on-accent);
+    border: var(--nb-border-thick) solid var(--border);
+    border-radius: var(--nb-radius);
+    box-shadow: var(--nb-shadow);
+    font-family: var(--font-display);
     font-size: 1.8rem;
-    color: #2c3e50;
-    margin-bottom: 1.5rem;
     font-weight: 700;
-}
-
-.form-container h2 {
-    font-size: 1.2rem;
-    color: #34495e;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
-    border-bottom: 2px solid #e9ecef;
-    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
 }
 
 .preview-container {
     width: 60%;
+    box-sizing: border-box;
     padding: 40px;
-    background-color: #525659;
+    background-color: var(--bg-alt);
     overflow-y: auto;
     height: 100vh;
     display: flex;
@@ -45,204 +52,158 @@
     align-items: flex-start;
 }
 
+/* The CV sheet is always white, so its frame uses --paper-frame rather than
+   --border, which goes near-white in dark mode and would disappear on it. */
 .preview-container .cv-page {
     background-color: white;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    border: var(--nb-border-thick) solid var(--paper-frame);
+    box-shadow: 8px 8px 0 var(--paper-frame);
     margin-bottom: 40px;
 }
 
-.cv-form input,
-.cv-form textarea {
-    display: block;
-    width: 100%;
-    margin-bottom: 12px;
-    padding: 10px 12px;
-    border: 1px solid #ced4da;
-    border-radius: 6px;
-    font-family: inherit;
-    font-size: 0.95rem;
-    transition: border-color 0.2s;
-}
-
-.cv-form input:focus,
-.cv-form textarea:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-}
-
-.cv-form textarea {
-    height: 100px;
-    resize: vertical;
-}
-
-.cv-form button {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-bottom: 10px;
-    margin-right: 8px;
-    font-weight: 500;
-    transition: background-color 0.2s;
-}
-
-.cv-form button:hover {
-    background-color: #0056b3;
-}
-
-.cv-form .form-item {
-    border: 1px solid #e9ecef;
-    padding: 15px;
-    margin-bottom: 15px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-}
-
-.cv-form .form-item-inline {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 8px;
-}
-
-.cv-form .form-item-inline input {
-    margin-bottom: 0;
-}
-
-.cv-form .form-item-inline button {
-    margin-bottom: 0;
-    padding: 0 12px;
-    background-color: #dc3545;
-}
-
-.cv-form .form-item-inline button:hover {
-    background-color: #c82333;
-}
-
-.item-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.item-options label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
-    color: #495057;
-    cursor: pointer;
-}
-
-.item-options button {
-    background-color: #dc3545;
-    margin-bottom: 0;
-    font-size: 0.85rem;
-}
-
-.item-options button:hover {
-    background-color: #c82333;
-}
-
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid #e9ecef;
-    padding-bottom: 0.5rem;
-}
-
-.section-header h2 {
-    margin: 0;
-    border: none;
-    padding: 0;
-}
-
-.section-header label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
-    color: #495057;
-    cursor: pointer;
-}
+/* Toolbar */
 
 .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
     display: flex;
+    align-items: center;
     gap: 8px;
-    margin-bottom: 1rem;
-    flex-wrap: wrap;
+    /* Pull out to the panel edges (.form-container has 2rem padding) so the
+       sticky bar spans the full width instead of leaving gutters.
+       No negative top margin: the h1 sits above the toolbar and would be
+       overlapped by it. */
+    margin: 0 -2rem 1.5rem;
+    padding: 1rem 2rem;
+    background-color: var(--bg-alt);
+    border-bottom: var(--nb-border-thick) solid var(--border);
 }
 
-.toolbar button {
-    flex: 1;
-    min-width: 100px;
-    padding: 10px 12px !important;
-    font-size: 0.9rem;
-    font-weight: 600 !important;
-    border-radius: 8px !important;
-    border: none;
+.toolbar-button {
+    position: relative;
+    flex: none;
+    width: 2.6rem;
+    height: 2.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 1.1rem;
+    line-height: 1;
+    color: var(--on-accent);
+    border: var(--nb-border-thick) solid var(--border);
+    border-radius: var(--nb-radius);
+    box-shadow: var(--nb-shadow);
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
-    margin-bottom: 0 !important;
+    transition: transform 0.08s, box-shadow 0.08s;
 }
 
-.toolbar button:active {
-    transform: scale(0.97);
+.toolbar-button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--nb-shadow-lg);
+}
+
+.toolbar-button:active {
+    transform: translate(2px, 2px);
+    box-shadow: var(--nb-shadow-sm);
+}
+
+.toolbar-button:focus-visible {
+    outline: var(--nb-border) solid var(--accent);
+    outline-offset: 3px;
 }
 
 .print-button {
-    background-color: #28a745 !important;
-    color: white !important;
-}
-
-.print-button:hover {
-    background-color: #218838 !important;
+    background-color: var(--success);
 }
 
 .export-button {
-    background-color: #0d6efd !important;
-    color: white !important;
-}
-
-.export-button:hover {
-    background-color: #0b5ed7 !important;
+    background-color: var(--accent);
 }
 
 .import-button {
-    background-color: #fd7e14 !important;
-    color: white !important;
+    background-color: var(--accent-alt);
 }
 
-.import-button:hover {
-    background-color: #e36a09 !important;
+/* Tooltip for the icon-only toolbar buttons.
+   Rendered below the button: .form-container is overflow-y:auto, which makes
+   the X axis a scroll container too, so anything above the bar gets clipped. */
+.toolbar-button[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    z-index: 30;
+    padding: 0.35rem 0.6rem;
+    background-color: var(--bg);
+    color: var(--text);
+    border: var(--nb-border) solid var(--border);
+    border-radius: var(--nb-radius);
+    box-shadow: var(--nb-shadow-sm);
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
 }
+
+.toolbar-button[data-tooltip]:hover::after,
+.toolbar-button[data-tooltip]:focus-visible::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* The toggle is pushed to the far right, so its tooltip anchors right to
+   avoid overflowing the panel. */
+.theme-button[data-tooltip]::after {
+    left: auto;
+    right: 0;
+}
+
+/* Template picker */
 
 .template-picker {
     display: flex;
     align-items: center;
     gap: 0.75rem;
     margin-bottom: 2rem;
+    font-family: var(--font-display);
     font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--slate-gray);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--text);
 }
 
 .template-picker select {
     flex: 1;
-    padding: 0.5rem 0.75rem;
-    border: 1px solid var(--geyser);
-    border-radius: 6px;
-    background-color: var(--white);
-    font-family: inherit;
+    padding: 0.5rem 2rem 0.5rem 0.75rem;
+    border: var(--nb-border) solid var(--border);
+    border-radius: var(--nb-radius);
+    background-color: var(--bg);
+    color: var(--text);
+    box-shadow: var(--nb-shadow-sm);
+    font-family: var(--font-ui);
     font-size: 0.95rem;
+    font-weight: 500;
     cursor: pointer;
+    appearance: none;
+    /* Caret drawn as a background image: a ::after on the <label> cannot be
+       positioned over the select without covering its click target. */
+    background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+        linear-gradient(135deg, currentColor 50%, transparent 50%);
+    background-position: calc(100% - 1rem) center, calc(100% - 0.65rem) center;
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+}
+
+.template-picker select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: var(--nb-shadow-focus);
 }
 
 /* Responsive Layout */
@@ -255,7 +216,18 @@
         width: 100%;
         height: auto;
         overflow-y: visible;
-        padding: 1.5rem;
+        padding: 0 1.5rem 1.5rem;
+        border-right: none;
+        border-bottom: var(--nb-border-thick) solid var(--border);
+    }
+
+    .form-container h1 {
+        margin-top: 1.5rem;
+    }
+
+    .toolbar {
+        margin: 0 -1.5rem 1.5rem;
+        padding: 1rem 1.5rem;
     }
 
     .preview-container {
@@ -271,9 +243,26 @@
     }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .toolbar-button {
+        transition: none;
+    }
+
+    .toolbar-button:hover,
+    .toolbar-button:active {
+        transform: none;
+    }
+}
+
 @media print {
     .no-print {
         display: none !important;
+    }
+
+    /* Force a light sheet even when the builder is in dark mode. */
+    body {
+        background-color: white;
+        color: black;
     }
 
     .app-container {
@@ -290,6 +279,7 @@
     }
 
     .preview-container .cv-page {
+        border: none;
         box-shadow: none;
         margin: 0;
         width: 100%;

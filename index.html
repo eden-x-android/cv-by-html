@@ -5,6 +5,19 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>cv-builder</title>
+    <script>
+      // Runs before first paint so a dark-mode reload never flashes white.
+      // Keep the storage key in sync with src/components/ThemeToggle.jsx.
+      (function () {
+        try {
+          var stored = localStorage.getItem('cv-builder-theme');
+          var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.dataset.theme = theme;
+        } catch (e) {
+          document.documentElement.dataset.theme = 'light';
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
