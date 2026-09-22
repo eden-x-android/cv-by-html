@@ -17,19 +17,18 @@
 
 .cv-form .linkable-toolbar .link-button {
     margin: 0;
-    padding: 4px 10px;
-    background-color: var(--catskill-white);
-    color: var(--semi-black);
-    font-size: 0.8rem;
-}
-
-.cv-form .linkable-toolbar .link-button:hover {
-    background-color: var(--geyser);
+    padding: 0.3rem 0.7rem;
+    background-color: var(--bg);
+    color: var(--text);
+    border-width: var(--nb-border);
+    box-shadow: var(--nb-shadow-sm);
+    font-size: 0.75rem;
 }
 
 .linkable-hint {
     font-size: 0.8rem;
-    color: var(--slate-gray);
+    color: var(--text);
+    opacity: 0.7;
 }
 
 .link-box {
@@ -37,10 +36,12 @@
     align-items: center;
     gap: 8px;
     margin-top: 8px;
-    padding: 8px;
-    border: 1px solid var(--geyser);
-    border-radius: 6px;
-    background-color: var(--catskill-white);
+    margin-right: 6px;
+    padding: 0.6rem;
+    border: var(--nb-border-thick) solid var(--border);
+    border-radius: var(--nb-radius);
+    box-shadow: var(--nb-shadow);
+    background-color: var(--bg-alt);
 }
 
 .cv-form .link-box input {
@@ -49,10 +50,12 @@
 }
 
 .cv-form .link-box button {
+    flex: none;
     margin: 0;
-    padding: 8px 14px;
+    padding: 0.5rem 0.9rem;
 }
 
 .cv-form .link-box .link-box-cancel {
-    background-color: var(--slate-gray);
+    background-color: var(--bg);
+    color: var(--text);
 }

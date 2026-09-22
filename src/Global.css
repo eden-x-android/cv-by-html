@@ -1,5 +1,7 @@
 /* Global Styles & Resets */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
 @font-face {
     font-family: BergenText;
     src: url('/fonts/BergenText-Regular.otf');
@@ -51,6 +53,62 @@
     --line-height: 1.35;
 }
 
+/*
+ * Neobrutalism design tokens — builder UI only.
+ * The printed CV (.cv-page) keeps using the legacy variables above so it stays
+ * identical in both themes and in print. Never repoint those from here.
+ */
+:root {
+    color-scheme: light;
+
+    --bg: #FFFFFF;
+    --bg-alt: #EFF6FF;
+    --text: #000000;
+    --border: #000000;
+    --shadow: #000000;
+    --accent: #3B82F6;
+    --accent-alt: #2563EB;
+    --success: #22C55E;
+    --success-bg: #DCFCE7;
+    --danger: #EF4444;
+    --danger-bg: #FEE2E2;
+
+    /* Ink on filled accent/success/danger surfaces. Every accent in both
+       palettes is light enough that black stays readable on it. */
+    --on-accent: #000000;
+
+    /* The CV sheet is always white, so its frame cannot follow --border:
+       in dark mode --border is near-white and would vanish on the paper. */
+    --paper-frame: #000000;
+
+    --nb-radius: 4px;
+    --nb-border: 2px;
+    --nb-border-thick: 3px;
+    --nb-shadow-sm: 2px 2px 0 var(--shadow);
+    --nb-shadow: 4px 4px 0 var(--shadow);
+    --nb-shadow-lg: 6px 6px 0 var(--shadow);
+    --nb-shadow-focus: 4px 4px 0 var(--accent);
+
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-ui: 'Inter', sans-serif;
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --bg: #0B1120;
+    --bg-alt: #111827;
+    --text: #F5F5F5;
+    --border: #E5E5E5;
+    --shadow: #F5F5F5;
+    --accent: #60A5FA;
+    --accent-alt: #3B82F6;
+    --success: #4ADE80;
+    --success-bg: #052E16;
+    --danger: #F87171;
+    --danger-bg: #450A0A;
+}
+
 html {
     font-size: 14px;
 }
@@ -58,6 +116,8 @@ html {
 body {
     margin: 0;
     font-family: 'WorkSans', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
