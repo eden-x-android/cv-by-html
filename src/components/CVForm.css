@@ -40,7 +40,7 @@
 .cv-form input[type="email"]:focus,
 .cv-form textarea:focus {
     outline: none;
-    border-color: var(--accent);
+    border-color: var(--focus-ring);
     box-shadow: var(--nb-shadow-focus);
 }
 
@@ -78,7 +78,7 @@
 }
 
 .cv-form button:focus-visible {
-    outline: var(--nb-border) solid var(--accent);
+    outline: var(--nb-border) solid var(--focus-ring);
     outline-offset: 3px;
 }
 
@@ -190,7 +190,7 @@
 }
 
 .cv-form input[type="checkbox"]:focus-visible {
-    outline: var(--nb-border) solid var(--accent);
+    outline: var(--nb-border) solid var(--focus-ring);
     outline-offset: 2px;
 }
 

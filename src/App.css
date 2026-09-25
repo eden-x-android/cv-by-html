@@ -110,7 +110,7 @@
 }
 
 .toolbar-button:focus-visible {
-    outline: var(--nb-border) solid var(--accent);
+    outline: var(--nb-border) solid var(--focus-ring);
     outline-offset: 3px;
 }
 
@@ -208,7 +208,7 @@
 
 .template-picker select:focus {
     outline: none;
-    border-color: var(--accent);
+    border-color: var(--focus-ring);
     box-shadow: var(--nb-shadow-focus);
 }
 
