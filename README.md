@@ -24,6 +24,7 @@ A powerful, React-based application designed to help you build, preview, and exp
 
 -   **Frontend**: React, CSS
 -   **Build Tool**: Vite
+-   **Hosting**: Netlify (Edge Functions + Functions + Blobs for the login gate, Resend for OTP email)
 -   **Styling**: Custom CSS with responsive design
 
 ## Getting Started
@@ -57,19 +58,43 @@ A powerful, React-based application designed to help you build, preview, and exp
 
 3. Open your browser to `http://localhost:5173`.
 
-### Building and Deploying to Firebase
+### Running Locally with the Login Gate
 
-1. **Build the production bundle**:
-   This generates the optimized files in the `dist` folder.
+`npm run dev` runs plain Vite with **no** login. To run the edge gate and the `/api/*` functions locally:
+
+1. Copy `.env.example` to `.env` and fill in the values.
+2. Start Netlify Dev (proxies Vite on `http://localhost:8888`):
    ```bash
-   npm run build
+   npm run dev:netlify
    ```
 
-2. **Deploy to Firebase**:
-   Ensure you have the Firebase CLI installed and are logged in (`firebase login`).
-   ```bash
-   firebase deploy
-   ```
+## Deployment (Netlify)
+
+Production deploys automatically on every push to `master` — no manual deploy step.
+
+### One-time setup
+
+1. **Resend** — sign up at [resend.com](https://resend.com) with the email that should receive OTPs (without a verified domain, Resend only delivers to the account owner's address). Create an API key.
+2. **Netlify** — *Add new site → Import an existing project → GitHub* → pick this repo. Set the production branch to `master`; build settings are read from `netlify.toml`.
+3. **Environment variables** — in *Site configuration → Environment variables*, add every variable from `.env.example`:
+
+   | Variable | Value |
+   |---|---|
+   | `AUTH_USERNAME` | The fixed username typed on the login page |
+   | `AUTH_EMAIL` | Inbox that receives the OTP |
+   | `RESEND_API_KEY` | Resend API key (mark as secret) |
+   | `RESEND_FROM` | Sender, e.g. `CV Builder <onboarding@resend.dev>` |
+   | `SESSION_SECRET` | Random string, `openssl rand -hex 32` (mark as secret) |
+
+4. Trigger a deploy (or push to `master`). Changing env vars requires a redeploy.
+
+### How the login works
+
+- `netlify/edge-functions/auth-gate.js` runs on every request. Without a valid `cv_session` cookie, page loads redirect to `/login/` and every other file (JS bundle, images) returns 401.
+- `/login/` asks for the username → `POST /api/request-otp` emails a 6-digit code (valid 5 minutes, one request per 60 s).
+- `POST /api/verify-otp` checks the code (5 attempts max) and sets an HttpOnly session cookie valid for 7 days.
+- The 🚪 button in the toolbar (`/api/logout`) clears the cookie.
+- Rotating `SESSION_SECRET` signs out every session.
 
 ### Building Your CV
 
@@ -96,29 +121,21 @@ A powerful, React-based application designed to help you build, preview, and exp
 -   `src/CVPreview.css`: Styles specific to the CV print layout.
 -   `src/App.css`: Styles for the application UI.
 -   `vite.config.js`: Vite configuration, including the custom avatar upload middleware.
+-   `netlify.toml`: Netlify build, dev and redirect settings.
+-   `netlify/edge-functions/auth-gate.js`: Blocks all requests without a session cookie.
+-   `netlify/functions/`: `/api/request-otp`, `/api/verify-otp`, `/api/logout`.
+-   `public/login/`: The login page (plain HTML/JS, served without the app bundle).
 
 ## Troubleshooting
 
-### Firebase Deployment Issues
+### Login Issues
 
-#### Error: Cannot find module 'vite' (During `firebase init`)
-**Cause:** Firebase CLI attempts to auto-detect Vite but the `node_modules` directory is missing.
-**Solution:** Ensure you install dependencies before initializing Firebase:
-```bash
-npm install
-firebase init
-```
+#### No OTP email arrives
+- Check the function log in Netlify (*Logs → Functions → request-otp*). `Resend responded 403` usually means `AUTH_EMAIL` isn't the Resend account email and no domain is verified.
+- A wrong username still shows the code step (by design, to avoid confirming usernames) — double-check `AUTH_USERNAME`.
 
-#### HTTP Error: 500, Internal error encountered (During `firebase deploy`)
-**Cause:** This is an internal error on Google's Firebase servers, not an error with your code.
-**Solution:** 
-1. **Wait and Retry:** Often, this is a temporary hiccup. Wait a few minutes and run `firebase deploy` again.
-2. **Accept Terms:** If this is a new Firebase project, open the [Firebase Console](https://console.firebase.google.com/), select your project, and check if you need to accept any Terms of Service.
-3. **Re-authenticate:** Refresh your CLI access tokens by running:
-   ```bash
-   firebase logout
-   firebase login
-   ```
+#### Redirected back to `/login/` after entering the code
+- `SESSION_SECRET` must be set for both functions and edge functions (scope "All" in Netlify env vars), then redeploy.
 
 ## License
 

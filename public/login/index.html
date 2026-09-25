@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <title>Sign in · cv-builder</title>
+    <script>
+      // Same pre-paint theme logic as /index.html (key: cv-builder-theme).
+      (function () {
+        try {
+          var stored = localStorage.getItem('cv-builder-theme');
+          var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.dataset.theme = theme;
+        } catch (e) {
+          document.documentElement.dataset.theme = 'light';
+        }
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" />
+    <link rel="stylesheet" href="/login/login.css" />
+  </head>
+  <body>
+    <main class="login-card">
+      <h1 class="login-title">CV Builder</h1>
+
+      <form id="username-form" class="login-form" novalidate>
+        <label class="login-label" for="username">Username</label>
+        <input id="username" name="username" class="login-input" type="text" autocomplete="username" required autofocus />
+        <button type="submit" class="login-button">Send code</button>
+      </form>
+
+      <form id="otp-form" class="login-form" novalidate hidden>
+        <p class="login-hint">If the username is correct, a 6-digit code has been sent to the registered email. It expires in 5 minutes.</p>
+        <label class="login-label" for="otp">Code</label>
+        <input id="otp" name="otp" class="login-input otp-input" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="\d{6}" maxlength="6" required />
+        <button type="submit" class="login-button">Verify</button>
+        <div class="login-actions">
+          <button type="button" id="resend-button" class="link-button">Resend code</button>
+          <button type="button" id="back-button" class="link-button">Change username</button>
+        </div>
+      </form>
+
+      <p id="message" class="login-message" role="status" aria-live="polite"></p>
+    </main>
+    <script src="/login/login.js"></script>
+  </body>
+</html>

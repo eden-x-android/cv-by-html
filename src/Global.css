@@ -62,12 +62,15 @@
     color-scheme: light;
 
     --bg: #FFFFFF;
-    --bg-alt: #EFF6FF;
+    --bg-alt: #EFFEFF;
     --text: #000000;
     --border: #000000;
     --shadow: #000000;
-    --accent: #3B82F6;
-    --accent-alt: #2563EB;
+    --accent: #C0F7FE;
+    --accent-alt: #7DE8F7;
+    /* --accent is too light to read as an outline on white, so focus
+       borders/outlines use their own darker token. */
+    --focus-ring: #0891B2;
     --success: #22C55E;
     --success-bg: #DCFCE7;
     --danger: #EF4444;
@@ -87,7 +90,7 @@
     --nb-shadow-sm: 2px 2px 0 var(--shadow);
     --nb-shadow: 4px 4px 0 var(--shadow);
     --nb-shadow-lg: 6px 6px 0 var(--shadow);
-    --nb-shadow-focus: 4px 4px 0 var(--accent);
+    --nb-shadow-focus: 4px 4px 0 var(--focus-ring);
 
     --font-display: 'Space Grotesk', sans-serif;
     --font-ui: 'Inter', sans-serif;
@@ -101,8 +104,9 @@
     --text: #F5F5F5;
     --border: #E5E5E5;
     --shadow: #F5F5F5;
-    --accent: #60A5FA;
-    --accent-alt: #3B82F6;
+    --accent: #C0F7FE;
+    --accent-alt: #7DE8F7;
+    --focus-ring: #C0F7FE;
     --success: #4ADE80;
     --success-bg: #052E16;
     --danger: #F87171;

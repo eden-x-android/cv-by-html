@@ -1,0 +1,235 @@
+/* Login page styles. This page loads without the app bundle (which is gated),
+   so it cannot use src/Global.css — the neobrutalism tokens below mirror it.
+   Keep them in sync when the palette changes there. */
+
+:root {
+    color-scheme: light;
+
+    --bg: #FFFFFF;
+    --bg-alt: #EFFEFF;
+    --text: #000000;
+    --border: #000000;
+    --shadow: #000000;
+    --accent: #C0F7FE;
+    --focus-ring: #0891B2;
+    --danger: #EF4444;
+    --danger-bg: #FEE2E2;
+    --on-accent: #000000;
+
+    --nb-radius: 4px;
+    --nb-border: 2px;
+    --nb-border-thick: 3px;
+    --nb-shadow-sm: 2px 2px 0 var(--shadow);
+    --nb-shadow: 4px 4px 0 var(--shadow);
+    --nb-shadow-lg: 6px 6px 0 var(--shadow);
+
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-ui: 'Inter', sans-serif;
+
+    /* Page background + Figma-style dot grid in the corners */
+    --page-bg: var(--accent);
+    --dot: #000000;
+    --dot-size: 2px;
+    --dot-gap: 1.25rem;
+    --dot-patch: min(22rem, 45vw);
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --bg: #0B1120;
+    --bg-alt: #111827;
+    --text: #F5F5F5;
+    --border: #E5E5E5;
+    --shadow: #F5F5F5;
+    --accent: #C0F7FE;
+    --focus-ring: #C0F7FE;
+    --page-bg: var(--bg);
+    --dot: #E5E5E5;
+    --danger: #F87171;
+    --danger-bg: #450A0A;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    background-color: var(--page-bg);
+    color: var(--text);
+    font-family: var(--font-ui);
+}
+
+/* Decorative dot grids, top-left and bottom-right, fading toward the center */
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    width: var(--dot-patch);
+    height: var(--dot-patch);
+    background-image: radial-gradient(circle, var(--dot) var(--dot-size), transparent calc(var(--dot-size) + 0.5px));
+    background-size: var(--dot-gap) var(--dot-gap);
+    pointer-events: none;
+}
+
+body::before {
+    top: 0;
+    left: 0;
+    background-position: 0 0;
+    -webkit-mask-image: radial-gradient(circle at top left, #000 35%, transparent 70%);
+    mask-image: radial-gradient(circle at top left, #000 35%, transparent 70%);
+}
+
+body::after {
+    right: 0;
+    bottom: 0;
+    background-position: 100% 100%;
+    -webkit-mask-image: radial-gradient(circle at bottom right, #000 35%, transparent 70%);
+    mask-image: radial-gradient(circle at bottom right, #000 35%, transparent 70%);
+}
+
+.login-card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 26rem;
+    padding: 2rem;
+    box-sizing: border-box;
+    background-color: var(--bg);
+    border: var(--nb-border-thick) solid var(--border);
+    border-radius: var(--nb-radius);
+    box-shadow: var(--nb-shadow-lg);
+}
+
+.login-title {
+    display: inline-block;
+    margin: 0 0 1.5rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--accent);
+    color: var(--on-accent);
+    border: var(--nb-border-thick) solid var(--border);
+    border-radius: var(--nb-radius);
+    box-shadow: var(--nb-shadow);
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.login-form[hidden] {
+    display: none;
+}
+
+.login-label {
+    font-family: var(--font-display);
+    font-weight: 600;
+}
+
+.login-hint {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.login-input {
+    padding: 0.7rem 0.8rem;
+    font-family: var(--font-ui);
+    font-size: 1rem;
+    color: var(--text);
+    background-color: var(--bg);
+    border: var(--nb-border) solid var(--border);
+    border-radius: var(--nb-radius);
+    box-shadow: var(--nb-shadow-sm);
+}
+
+.login-input:focus {
+    outline: none;
+    box-shadow: 4px 4px 0 var(--focus-ring);
+}
+
+.otp-input {
+    font-size: 1.5rem;
+    letter-spacing: 0.5rem;
+    text-align: center;
+}
+
+.login-button {
+    margin-top: 0.5rem;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--on-accent);
+    background-color: var(--accent);
+    border: var(--nb-border-thick) solid var(--border);
+    border-radius: var(--nb-radius);
+    box-shadow: var(--nb-shadow);
+    cursor: pointer;
+    transition: transform 0.08s, box-shadow 0.08s;
+}
+
+.login-button:hover:not(:disabled) {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--nb-shadow-lg);
+}
+
+.login-button:active:not(:disabled) {
+    transform: translate(2px, 2px);
+    box-shadow: var(--nb-shadow-sm);
+}
+
+.login-button:disabled,
+.link-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.login-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.link-button {
+    padding: 0;
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    background: none;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.login-message {
+    min-height: 1.4rem;
+    margin: 1rem 0 0;
+    font-weight: 500;
+}
+
+.login-message.is-error {
+    padding: 0.5rem 0.75rem;
+    color: var(--text);
+    background-color: var(--danger-bg);
+    border: var(--nb-border) solid var(--danger);
+    border-radius: var(--nb-radius);
+}
+
+.login-message:empty {
+    display: none;
+}

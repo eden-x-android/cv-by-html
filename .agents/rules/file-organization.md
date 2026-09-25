@@ -15,6 +15,18 @@ src/
     CVForm.jsx / CVForm.css
     CVPreview.jsx / CVPreview.css
 ```
+## Server-side & login (ngoài `src/`)
+```
+netlify/
+  edge-functions/auth-gate.js   # chặn mọi request khi chưa có cookie phiên
+  functions/
+    _lib/session.js              # helper dùng chung (không phải function)
+    request-otp.js / verify-otp.js / logout.js   # /api/*
+public/login/                    # trang login: HTML + JS/CSS thuần
+```
+- `public/login/` là **ngoại lệ có chủ đích** với react-conventions: trang login phải tải được khi bundle app (đã bị gate) chưa được phép tải, nên không dùng React/Vite. Biến màu trong `login.css` là bản sao của `Global.css` — sửa palette thì sửa cả hai.
+- Helper dùng chung giữa các function đặt trong `netlify/functions/_lib/` (thư mục bắt đầu bằng `_` và không có file trùng tên nên Netlify không deploy nó thành function).
+
 - Component con luôn đặt trong `components/`, không đặt lẫn ở `src/` gốc.
 - `src/` gốc chỉ chứa: `App.jsx`, `main.jsx`, `Global.css` (style/biến toàn cục dùng chung).
 
