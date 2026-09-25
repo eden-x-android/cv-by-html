@@ -110,7 +110,7 @@
 }
 
 .toolbar-button:focus-visible {
-    outline: var(--nb-border) solid var(--accent);
+    outline: var(--nb-border) solid var(--focus-ring);
     outline-offset: 3px;
 }
 
@@ -124,6 +124,11 @@
 
 .import-button {
     background-color: var(--accent-alt);
+}
+
+.logout-button {
+    background-color: var(--danger);
+    text-decoration: none;
 }
 
 /* Tooltip for the icon-only toolbar buttons.
@@ -156,9 +161,10 @@
     visibility: visible;
 }
 
-/* The toggle is pushed to the far right, so its tooltip anchors right to
-   avoid overflowing the panel. */
-.theme-button[data-tooltip]::after {
+/* The theme toggle and logout sit at the far right, so their tooltips anchor
+   right to avoid overflowing the panel. */
+.theme-button[data-tooltip]::after,
+.logout-button[data-tooltip]::after {
     left: auto;
     right: 0;
 }
@@ -202,7 +208,7 @@
 
 .template-picker select:focus {
     outline: none;
-    border-color: var(--accent);
+    border-color: var(--focus-ring);
     box-shadow: var(--nb-shadow-focus);
 }
 

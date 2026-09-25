@@ -22,11 +22,13 @@
 
 ## Project Goals
 
-- Keep Firebase usage on the free Spark plan / Hosting free tier — never
-  trigger billing without explicit user confirmation.
+- Keep Netlify (Hosting, Functions, Edge Functions, Blobs) and Resend on
+  their free tiers — never trigger billing without explicit user
+  confirmation.
 - Keep the codebase a small, single-purpose CV builder (form → live preview
   → print/export), not a general app framework — avoid premature
   abstraction (routing, state libraries, backend) beyond current scope.
+  The only server-side code is the login gate under `netlify/`.
 - Predictable, print-accurate rendering: form state maps 1:1 to the printed
   CV layout, with explicit control over page breaks.
 - Consistent component/CSS conventions so form and preview stay easy to
@@ -41,8 +43,14 @@
   CV data via `useState`, passes it down to `CVForm` (editor) and
   `CVPreview` (rendered/printable output). No router, no global store.
 - **Data layer:** No backend/database — CV data lives in client-side React
-  state only. Firebase is used solely for static Hosting (deploy target),
-  see `@.agents/rules/firebase-cost-safety.md`.
+  state only.
+- **Hosting & auth:** Netlify, auto-deployed from `master` (`netlify.toml`).
+  Every request passes `netlify/edge-functions/auth-gate.js`, which requires
+  a signed `cv_session` cookie. Login is `public/login/` (plain HTML/JS,
+  loads without the gated app bundle): fixed username → OTP emailed via
+  Resend to a fixed address → `/api/verify-otp` sets the cookie. OTP state
+  lives in Netlify Blobs. Config via env vars listed in `.env.example`.
+  See `@.agents/rules/netlify-cost-safety.md`.
 - **Notes:** Print output relies on `@media print` CSS patterns
   (`.no-print`, `.page-break`) — see `@.agents/rules/css-conventions.md`.
 
@@ -50,14 +58,16 @@
 
 ## Hard Rules (always apply)
 
-- Never enable/upgrade any billable Firebase or cloud service, or touch
-  billing/payment settings, without explicit user confirmation first.
-- `firebase deploy --only hosting` is pre-approved (safe, free-tier static
-  deploy); anything beyond Hosting in `firebase.json` requires confirmation.
+- Never enable/upgrade any billable Netlify, Resend or other cloud service,
+  or touch billing/payment settings, without explicit user confirmation first.
+- Deploys happen by pushing to `master` — only push/merge there when the
+  user asks. New features in `netlify.toml` require confirmation.
+- Never weaken the auth gate (excluded paths, cookie checks, OTP limits)
+  without explicit user confirmation.
 - When replying in Vietnamese, the agent refers to itself as "em" and
   addresses the user as "đại ca".
 
-(Full detail: `@.agents/rules/firebase-cost-safety.md`, `@.agents/rules/PRONOUNS.md`)
+(Full detail: `@.agents/rules/netlify-cost-safety.md`, `@.agents/rules/PRONOUNS.md`)
 
 ---
 
@@ -65,7 +75,7 @@
 
 | File | Load when... |
 |---|---|
-| `@.agents/rules/firebase-cost-safety.md` | Any task touching `firebase.json`, `.firebaserc`, `firebase deploy`, billing/plan changes, or adding a new cloud service. |
+| `@.agents/rules/netlify-cost-safety.md` | Any task touching `netlify.toml`, `netlify/`, `public/login/`, deploys, billing/plan changes, email sending, or adding a new cloud service. |
 | `@.agents/rules/file-organization.md` | Adding/moving files or folders, creating a new component, deciding where a CSS/asset file belongs. |
 | `@.agents/rules/react-conventions.md` | Writing or editing React components: component declaration style, state updates, event handler naming, JSX/list-rendering patterns. |
 | `@.agents/rules/css-conventions.md` | Writing or editing CSS: class naming, color/spacing variables, units (`rem`/`px`/`mm`/`%`), inline style vs class decisions, print styles. |
