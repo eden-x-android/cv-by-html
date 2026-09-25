@@ -26,4 +26,14 @@ export default defineConfig([
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
     },
   },
+  {
+    // Serverless code: Node for functions, Deno (Netlify global) for edge.
+    files: ['netlify/**/*.js'],
+    languageOptions: {
+      globals: { ...globals.node, Netlify: 'readonly' },
+    },
+    rules: {
+      'react-refresh/only-export-components': 'off',
+    },
+  },
 ])

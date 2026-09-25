@@ -126,6 +126,11 @@
     background-color: var(--accent-alt);
 }
 
+.logout-button {
+    background-color: var(--danger);
+    text-decoration: none;
+}
+
 /* Tooltip for the icon-only toolbar buttons.
    Rendered below the button: .form-container is overflow-y:auto, which makes
    the X axis a scroll container too, so anything above the bar gets clipped. */
@@ -156,9 +161,10 @@
     visibility: visible;
 }
 
-/* The toggle is pushed to the far right, so its tooltip anchors right to
-   avoid overflowing the panel. */
-.theme-button[data-tooltip]::after {
+/* The theme toggle and logout sit at the far right, so their tooltips anchor
+   right to avoid overflowing the panel. */
+.theme-button[data-tooltip]::after,
+.logout-button[data-tooltip]::after {
     left: auto;
     right: 0;
 }

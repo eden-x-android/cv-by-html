@@ -223,6 +223,12 @@ function App() {
                         data-tooltip="Import JSON"
                     >⬆️</button>
                     <ThemeToggle />
+                    <a
+                        href="/api/logout"
+                        className="toolbar-button logout-button"
+                        aria-label="Sign out"
+                        data-tooltip="Sign out"
+                    >🚪</a>
                     <input
                         ref={importInputRef}
                         type="file"
