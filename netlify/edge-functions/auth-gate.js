@@ -56,5 +56,5 @@ export default async (request, context) => {
 
 export const config = {
     path: '/*',
-    excludedPath: ['/login/*', '/api/*', '/fonts/*', '/vite.svg'],
+    excludedPath: ['/login/*', '/api/*', '/fonts/*', '/favicon.svg'],
 };
