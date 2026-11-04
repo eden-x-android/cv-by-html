@@ -114,6 +114,11 @@
     outline-offset: 3px;
 }
 
+.toolbar-button:disabled {
+    opacity: 0.5;
+    cursor: progress;
+}
+
 .print-button {
     background-color: var(--success);
 }

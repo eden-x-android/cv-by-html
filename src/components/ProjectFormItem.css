@@ -1,0 +1,29 @@
+.project-kind {
+    display: inline-block;
+    margin-bottom: 0.75rem;
+    padding: 0.15rem 0.5rem;
+    background-color: var(--accent-alt);
+    color: var(--on-accent);
+    border: var(--nb-border) solid var(--border);
+    border-radius: var(--nb-radius);
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.sub-project {
+    margin: 0 0 1rem 1rem;
+    padding: 0.75rem;
+    border: var(--nb-border) dashed var(--border);
+    border-radius: var(--nb-radius);
+}
+
+.cv-form .tech-stack-input {
+    height: 80px;
+}
+
+.cv-form .sub-project-remove {
+    background-color: var(--danger);
+}

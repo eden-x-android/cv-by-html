@@ -1,0 +1,21 @@
+.project-link-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.cv-form .project-link-row input[type="text"] {
+    margin-bottom: 0;
+}
+
+.cv-form .project-link-row .project-link-label {
+    flex: 0 0 35%;
+}
+
+.cv-form .project-link-row .project-link-remove {
+    flex: none;
+    margin: 0;
+    padding: 0.5rem 0.75rem;
+    background-color: var(--danger);
+}

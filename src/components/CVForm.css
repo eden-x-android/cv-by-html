@@ -287,3 +287,35 @@
         transform: none;
     }
 }
+
+.cv-form .avatar-remove {
+    margin: 0;
+    padding: 0.4rem 0.8rem;
+    background-color: var(--danger);
+}
+
+/* Collapsible section headers (form only, the CV is unaffected) */
+
+.cv-form .section-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+    color: var(--text);
+    text-align: left;
+}
+
+.cv-form .section-toggle:hover,
+.cv-form .section-toggle:active {
+    transform: none;
+    box-shadow: none;
+}
+
+.section-toggle-icon {
+    width: 1rem;
+    font-size: 1rem;
+}
