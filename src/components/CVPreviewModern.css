@@ -1,0 +1,288 @@
+/* Modern template (CV schema v2): single column, A4.
+   Self-contained on purpose: the HTML export inlines this file as-is, plus the
+   :root variables it uses and embedded fonts. Sizes assume html { font-size: 14px }.
+   Font weights map to the @font-face rules: normal = Light, bold = SemiBold.
+   Content flows naturally across pages; the only breaks are the ones the user
+   turns on (.page-break). */
+
+@page {
+    size: A4;
+    margin: 11.6mm 0;
+}
+
+.cv-modern {
+    box-sizing: border-box;
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 3.14rem 4rem;
+    background-color: var(--white);
+    color: var(--semi-black);
+    font-family: 'WorkSans', sans-serif;
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1.32;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+}
+
+.cv-modern * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.cv-modern a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Header: name block + avatar, summary, contacts */
+
+.cv-modern .cv-identity {
+    display: flex;
+    align-items: center;
+    gap: 1.43rem;
+}
+
+.cv-modern .cv-identity-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.cv-modern .cv-name {
+    font-family: 'BergenText', 'WorkSans', sans-serif;
+    font-size: 3.55rem;
+    font-weight: bold;
+    line-height: 1.1;
+}
+
+.cv-modern .cv-job-title {
+    margin-top: 1rem;
+    font-size: 1.33rem;
+    font-weight: bold;
+    color: var(--slate-gray);
+}
+
+.cv-modern .cv-address {
+    margin-top: 0.71rem;
+    color: var(--cool-gray);
+}
+
+.cv-modern .cv-avatar {
+    flex: none;
+    width: 8.89rem;
+    height: 8.89rem;
+    padding: 0.33rem;
+    border: 0.22rem solid var(--blue);
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.cv-modern .cv-summary {
+    margin-top: 1.43rem;
+}
+
+.cv-modern .cv-summary-text {
+    white-space: pre-line;
+}
+
+.cv-modern .cv-contacts {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: 0.71rem 4.57rem;
+    margin-top: 1.43rem;
+}
+
+.cv-modern .cv-contact {
+    display: flex;
+    align-items: center;
+    gap: 0.64rem;
+}
+
+.cv-modern .cv-contact img {
+    width: 1.14rem;
+    height: 1.14rem;
+}
+
+/* Highlighter-style underline used for contacts and links */
+.cv-modern .cv-underlined,
+.cv-modern a.url-in-text {
+    background-image: linear-gradient(var(--semi-black-10), var(--semi-black-10));
+    background-repeat: no-repeat;
+    background-size: 100% 0.29rem;
+    background-position: 0 85%;
+}
+
+/* Sections */
+
+.cv-modern .cv-section {
+    margin-top: 2rem;
+}
+
+.cv-modern .cv-section-title {
+    margin-bottom: 1rem;
+    font-family: 'BergenText', 'WorkSans', sans-serif;
+    font-size: 1.33rem;
+    font-weight: bold;
+    color: var(--blue);
+}
+
+.cv-modern .cv-entry {
+    margin-top: 1.43rem;
+}
+
+.cv-modern .cv-section-title + .cv-entry {
+    margin-top: 0;
+}
+
+.cv-modern .cv-entry-title {
+    font-size: 1.11rem;
+    font-weight: bold;
+    line-height: 1.3;
+}
+
+.cv-modern .cv-muted,
+.cv-modern .cv-entry-meta {
+    color: var(--cool-gray);
+}
+
+.cv-modern .cv-entry-meta {
+    margin-top: 0.29rem;
+}
+
+.cv-modern .cv-degree {
+    margin-top: 0.43rem;
+}
+
+/* Bullets: blue chevron, hanging indent */
+
+.cv-modern .cv-bullets {
+    list-style: none;
+    margin-top: 0.71rem;
+}
+
+.cv-modern .cv-bullets li {
+    display: grid;
+    grid-template-columns: 1.64rem 1fr;
+    padding-left: 1.14rem;
+}
+
+.cv-modern .cv-bullets li + li {
+    margin-top: 0.36rem;
+}
+
+.cv-modern .cv-bullets li::before {
+    content: "›";
+    font-weight: bold;
+    color: var(--blue);
+}
+
+/* Chips: skills, tech stack, languages */
+
+.cv-modern .cv-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.43rem;
+}
+
+.cv-modern .cv-entry .cv-chips {
+    margin-top: 0.43rem;
+}
+
+.cv-modern .cv-chip {
+    padding: 0.29rem 0.43rem;
+    border-radius: 0.29rem;
+    background-color: var(--catskill-white);
+    font-size: 0.86rem;
+    line-height: 1;
+}
+
+.cv-modern .cv-chips-large .cv-chip {
+    padding: 0.36rem 0.43rem;
+}
+
+.cv-modern .cv-skill-groups {
+    display: grid;
+    grid-template-columns: 6.86rem 1fr;
+    gap: 0.71rem 1.14rem;
+    align-items: baseline;
+}
+
+.cv-modern .cv-skill-group-name {
+    color: var(--cool-gray);
+}
+
+/* Projects */
+
+.cv-modern .cv-project-overview {
+    margin-top: 0.43rem;
+}
+
+/* Store/demo link next to the project name: small accent text, so it reads
+   as a link without competing with the name. */
+.cv-modern .cv-project-link {
+    margin-left: 0.57rem;
+    font-size: 0.86rem;
+    font-weight: normal;
+    color: var(--blue);
+    white-space: nowrap;
+}
+
+/* Divider between the project name and its link: "KDS · Google Play ↗" */
+.cv-modern .cv-project-link::before {
+    content: "·";
+    margin-right: 0.57rem;
+    font-weight: bold;
+    color: var(--cool-gray);
+}
+
+.cv-modern .cv-project-group-item {
+    margin-top: 1rem;
+    padding-left: 1.14rem;
+}
+
+.cv-modern .cv-project-group-name {
+    font-weight: bold;
+}
+
+/* Page breaks: a labelled marker on screen, a real break when printing */
+
+.cv-modern .page-break {
+    position: relative;
+    height: 1.43rem;
+    margin: 1rem 0;
+    border-top: 2px dashed var(--danger);
+}
+
+.cv-modern .page-break::after {
+    content: "PAGE BREAK";
+    position: absolute;
+    top: -0.71rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 0.71rem;
+    background-color: var(--white);
+    color: var(--danger);
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+@media print {
+    .cv-modern {
+        width: 100%;
+        min-height: 0;
+        padding: 0 4rem;
+    }
+
+    .cv-modern .page-break {
+        break-after: page;
+        height: 0;
+        margin: 0;
+        border: none;
+    }
+
+    .cv-modern .page-break::after {
+        display: none;
+    }
+}
